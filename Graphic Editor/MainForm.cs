@@ -12,7 +12,7 @@ namespace Graphic_Editor
 {
     public partial class MainForm : Form
     {
-        private const ushort MAX_SIZE_IMAGE = 513;
+        private const ushort MAX_SIZE_IMAGE = 512;
         private const ushort DEFULT_HEIGHT = 32;
         private const ushort DEFULT_WIDTH = 32;
         private const byte DEFAULT_COLOR_R = 0;
@@ -30,10 +30,10 @@ namespace Graphic_Editor
 
         private ushort _heightImage;
         private ushort _widthImage;
-        private float _cellWidth = 0;
-        private float _cellHeight = 0;
         private short _hoveredCellX = -1;
         private short _hoveredCellY = -1;
+        private float _cellWidth = 0;
+        private float _cellHeight = 0;
 
         public MainForm()
         {
@@ -234,18 +234,19 @@ namespace Graphic_Editor
 
         private void ResizeDrawPictureBox()
         {
-            float ratioOfTheSides = (float)_heightImage / _widthImage;
+            float ratioOfTheSidesImage = (float)_heightImage / _widthImage;
+            float ratioOfTheSidesPanel = (float)drawPanel.Height / drawPanel.Width;
 
-            if (ratioOfTheSides >= 1)
+            if (ratioOfTheSidesImage >= ratioOfTheSidesPanel)
             {
                 texturePictureBox.Height = drawPanel.Height;
-                texturePictureBox.Width = (int)(texturePictureBox.Height / ratioOfTheSides);
+                texturePictureBox.Width = (int)(texturePictureBox.Height / ratioOfTheSidesImage);
                 texturePictureBox.Location = new Point(drawPanel.Width / 2 - texturePictureBox.Width / 2, 0);
             }
             else
             {
                 texturePictureBox.Width = drawPanel.Width;
-                texturePictureBox.Height = (int)(texturePictureBox.Width * ratioOfTheSides);
+                texturePictureBox.Height = (int)(texturePictureBox.Width * ratioOfTheSidesImage);
                 texturePictureBox.Location = new Point(0, drawPanel.Height / 2 - texturePictureBox.Height / 2);
             }
 
