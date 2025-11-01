@@ -34,15 +34,15 @@
             this.button12 = new System.Windows.Forms.Button();
             this.button11 = new System.Windows.Forms.Button();
             this.button10 = new System.Windows.Forms.Button();
-            this.button9 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.pipetteButton = new System.Windows.Forms.Button();
+            this.circleButton = new System.Windows.Forms.Button();
+            this.rectangleButton = new System.Windows.Forms.Button();
+            this.curveButton = new System.Windows.Forms.Button();
+            this.lineButton = new System.Windows.Forms.Button();
+            this.fillPatternButton = new System.Windows.Forms.Button();
+            this.fillButton = new System.Windows.Forms.Button();
+            this.eraserButton = new System.Windows.Forms.Button();
+            this.pencilButton = new System.Windows.Forms.Button();
             this.panelRight = new System.Windows.Forms.Panel();
             this.hexTextBox = new System.Windows.Forms.TextBox();
             this.hexLabel = new System.Windows.Forms.Label();
@@ -92,15 +92,15 @@
             this.panelLeft.Controls.Add(this.button12);
             this.panelLeft.Controls.Add(this.button11);
             this.panelLeft.Controls.Add(this.button10);
-            this.panelLeft.Controls.Add(this.button9);
-            this.panelLeft.Controls.Add(this.button5);
-            this.panelLeft.Controls.Add(this.button6);
-            this.panelLeft.Controls.Add(this.button7);
-            this.panelLeft.Controls.Add(this.button8);
-            this.panelLeft.Controls.Add(this.button4);
-            this.panelLeft.Controls.Add(this.button3);
-            this.panelLeft.Controls.Add(this.button2);
-            this.panelLeft.Controls.Add(this.button1);
+            this.panelLeft.Controls.Add(this.pipetteButton);
+            this.panelLeft.Controls.Add(this.circleButton);
+            this.panelLeft.Controls.Add(this.rectangleButton);
+            this.panelLeft.Controls.Add(this.curveButton);
+            this.panelLeft.Controls.Add(this.lineButton);
+            this.panelLeft.Controls.Add(this.fillPatternButton);
+            this.panelLeft.Controls.Add(this.fillButton);
+            this.panelLeft.Controls.Add(this.eraserButton);
+            this.panelLeft.Controls.Add(this.pencilButton);
             this.panelLeft.Cursor = System.Windows.Forms.Cursors.Default;
             this.panelLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelLeft.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -149,104 +149,104 @@
             this.button10.TabIndex = 9;
             this.button10.UseVisualStyleBackColor = true;
             // 
-            // button9
+            // pipetteButton
             // 
-            this.button9.BackgroundImage = global::Graphic_Editor.Properties.Resources.copyСolor;
-            this.button9.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button9.Location = new System.Drawing.Point(132, 772);
-            this.button9.Margin = new System.Windows.Forms.Padding(10);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(125, 125);
-            this.button9.TabIndex = 8;
-            this.button9.UseVisualStyleBackColor = true;
+            this.pipetteButton.BackgroundImage = global::Graphic_Editor.Properties.Resources.copyСolor;
+            this.pipetteButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pipetteButton.Location = new System.Drawing.Point(132, 772);
+            this.pipetteButton.Margin = new System.Windows.Forms.Padding(10);
+            this.pipetteButton.Name = "pipetteButton";
+            this.pipetteButton.Size = new System.Drawing.Size(125, 125);
+            this.pipetteButton.TabIndex = 8;
+            this.pipetteButton.UseVisualStyleBackColor = true;
             // 
-            // button5
+            // circleButton
             // 
-            this.button5.BackgroundImage = global::Graphic_Editor.Properties.Resources.circle;
-            this.button5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button5.Location = new System.Drawing.Point(206, 627);
-            this.button5.Margin = new System.Windows.Forms.Padding(10);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(125, 125);
-            this.button5.TabIndex = 7;
-            this.button5.UseVisualStyleBackColor = true;
+            this.circleButton.BackgroundImage = global::Graphic_Editor.Properties.Resources.circle;
+            this.circleButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.circleButton.Location = new System.Drawing.Point(206, 627);
+            this.circleButton.Margin = new System.Windows.Forms.Padding(10);
+            this.circleButton.Name = "circleButton";
+            this.circleButton.Size = new System.Drawing.Size(125, 125);
+            this.circleButton.TabIndex = 7;
+            this.circleButton.UseVisualStyleBackColor = true;
             // 
-            // button6
+            // rectangleButton
             // 
-            this.button6.BackgroundImage = global::Graphic_Editor.Properties.Resources.rectangle;
-            this.button6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button6.Location = new System.Drawing.Point(61, 627);
-            this.button6.Margin = new System.Windows.Forms.Padding(10);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(125, 125);
-            this.button6.TabIndex = 6;
-            this.button6.UseVisualStyleBackColor = true;
+            this.rectangleButton.BackgroundImage = global::Graphic_Editor.Properties.Resources.rectangle;
+            this.rectangleButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.rectangleButton.Location = new System.Drawing.Point(61, 627);
+            this.rectangleButton.Margin = new System.Windows.Forms.Padding(10);
+            this.rectangleButton.Name = "rectangleButton";
+            this.rectangleButton.Size = new System.Drawing.Size(125, 125);
+            this.rectangleButton.TabIndex = 6;
+            this.rectangleButton.UseVisualStyleBackColor = true;
             // 
-            // button7
+            // curveButton
             // 
-            this.button7.BackgroundImage = global::Graphic_Editor.Properties.Resources.curve1;
-            this.button7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button7.Location = new System.Drawing.Point(206, 482);
-            this.button7.Margin = new System.Windows.Forms.Padding(10);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(125, 125);
-            this.button7.TabIndex = 5;
-            this.button7.UseVisualStyleBackColor = true;
+            this.curveButton.BackgroundImage = global::Graphic_Editor.Properties.Resources.curve1;
+            this.curveButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.curveButton.Location = new System.Drawing.Point(206, 482);
+            this.curveButton.Margin = new System.Windows.Forms.Padding(10);
+            this.curveButton.Name = "curveButton";
+            this.curveButton.Size = new System.Drawing.Size(125, 125);
+            this.curveButton.TabIndex = 5;
+            this.curveButton.UseVisualStyleBackColor = true;
             // 
-            // button8
+            // lineButton
             // 
-            this.button8.BackgroundImage = global::Graphic_Editor.Properties.Resources.line;
-            this.button8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button8.Location = new System.Drawing.Point(61, 482);
-            this.button8.Margin = new System.Windows.Forms.Padding(10);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(125, 125);
-            this.button8.TabIndex = 4;
-            this.button8.UseVisualStyleBackColor = true;
+            this.lineButton.BackgroundImage = global::Graphic_Editor.Properties.Resources.line;
+            this.lineButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.lineButton.Location = new System.Drawing.Point(61, 482);
+            this.lineButton.Margin = new System.Windows.Forms.Padding(10);
+            this.lineButton.Name = "lineButton";
+            this.lineButton.Size = new System.Drawing.Size(125, 125);
+            this.lineButton.TabIndex = 4;
+            this.lineButton.UseVisualStyleBackColor = true;
             // 
-            // button4
+            // fillPatternButton
             // 
-            this.button4.BackgroundImage = global::Graphic_Editor.Properties.Resources.fillingPattern;
-            this.button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button4.Location = new System.Drawing.Point(206, 337);
-            this.button4.Margin = new System.Windows.Forms.Padding(10);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(125, 125);
-            this.button4.TabIndex = 3;
-            this.button4.UseVisualStyleBackColor = true;
+            this.fillPatternButton.BackgroundImage = global::Graphic_Editor.Properties.Resources.fillingPattern;
+            this.fillPatternButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.fillPatternButton.Location = new System.Drawing.Point(206, 337);
+            this.fillPatternButton.Margin = new System.Windows.Forms.Padding(10);
+            this.fillPatternButton.Name = "fillPatternButton";
+            this.fillPatternButton.Size = new System.Drawing.Size(125, 125);
+            this.fillPatternButton.TabIndex = 3;
+            this.fillPatternButton.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // fillButton
             // 
-            this.button3.BackgroundImage = global::Graphic_Editor.Properties.Resources.filling;
-            this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button3.Location = new System.Drawing.Point(61, 337);
-            this.button3.Margin = new System.Windows.Forms.Padding(10);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(125, 125);
-            this.button3.TabIndex = 2;
-            this.button3.UseVisualStyleBackColor = true;
+            this.fillButton.BackgroundImage = global::Graphic_Editor.Properties.Resources.filling;
+            this.fillButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.fillButton.Location = new System.Drawing.Point(61, 337);
+            this.fillButton.Margin = new System.Windows.Forms.Padding(10);
+            this.fillButton.Name = "fillButton";
+            this.fillButton.Size = new System.Drawing.Size(125, 125);
+            this.fillButton.TabIndex = 2;
+            this.fillButton.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // eraserButton
             // 
-            this.button2.BackgroundImage = global::Graphic_Editor.Properties.Resources.eraser;
-            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button2.Location = new System.Drawing.Point(206, 192);
-            this.button2.Margin = new System.Windows.Forms.Padding(10);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(125, 125);
-            this.button2.TabIndex = 1;
-            this.button2.UseVisualStyleBackColor = true;
+            this.eraserButton.BackgroundImage = global::Graphic_Editor.Properties.Resources.eraser;
+            this.eraserButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.eraserButton.Location = new System.Drawing.Point(206, 192);
+            this.eraserButton.Margin = new System.Windows.Forms.Padding(10);
+            this.eraserButton.Name = "eraserButton";
+            this.eraserButton.Size = new System.Drawing.Size(125, 125);
+            this.eraserButton.TabIndex = 1;
+            this.eraserButton.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // pencilButton
             // 
-            this.button1.BackgroundImage = global::Graphic_Editor.Properties.Resources.pencil;
-            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button1.Location = new System.Drawing.Point(61, 192);
-            this.button1.Margin = new System.Windows.Forms.Padding(10);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(125, 125);
-            this.button1.TabIndex = 0;
-            this.button1.UseVisualStyleBackColor = true;
+            this.pencilButton.BackgroundImage = global::Graphic_Editor.Properties.Resources.pencil;
+            this.pencilButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pencilButton.Location = new System.Drawing.Point(61, 192);
+            this.pencilButton.Margin = new System.Windows.Forms.Padding(10);
+            this.pencilButton.Name = "pencilButton";
+            this.pencilButton.Size = new System.Drawing.Size(125, 125);
+            this.pencilButton.TabIndex = 0;
+            this.pencilButton.UseVisualStyleBackColor = true;
             // 
             // panelRight
             // 
@@ -460,7 +460,7 @@
             this.currentPositionLabel.AutoSize = true;
             this.currentPositionLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.currentPositionLabel.ForeColor = System.Drawing.Color.Gold;
-            this.currentPositionLabel.Location = new System.Drawing.Point(100, 914);
+            this.currentPositionLabel.Location = new System.Drawing.Point(15, 864);
             this.currentPositionLabel.Name = "currentPositionLabel";
             this.currentPositionLabel.Size = new System.Drawing.Size(43, 25);
             this.currentPositionLabel.TabIndex = 8;
@@ -714,16 +714,15 @@
         private System.Windows.Forms.Button resizeButton;
         private System.Windows.Forms.Label currentSizeLabel;
         private System.Windows.Forms.Label currentZoomLabel;
-        private System.Windows.Forms.Label currentLayerLabel;
         private System.Windows.Forms.Label currentPositionLabel;
-        private System.Windows.Forms.Button button9;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.Button button8;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button pipetteButton;
+        private System.Windows.Forms.Button circleButton;
+        private System.Windows.Forms.Button rectangleButton;
+        private System.Windows.Forms.Button curveButton;
+        private System.Windows.Forms.Button lineButton;
+        private System.Windows.Forms.Button fillPatternButton;
+        private System.Windows.Forms.Button fillButton;
+        private System.Windows.Forms.Button eraserButton;
         private System.Windows.Forms.Button button13;
         private System.Windows.Forms.Button button12;
         private System.Windows.Forms.Button button11;
@@ -731,7 +730,7 @@
         private System.Windows.Forms.PictureBox removeColorPictureBox;
         private System.Windows.Forms.PictureBox currentColorPictureBox;
         private System.Windows.Forms.CheckBox gridCheckBox;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button pencilButton;
         private System.Windows.Forms.Label colorLabel;
         private System.Windows.Forms.TextBox bTextBox;
         private System.Windows.Forms.Label bLabel;
@@ -742,6 +741,7 @@
         private System.Windows.Forms.TextBox hexTextBox;
         private System.Windows.Forms.Label hexLabel;
         private System.Windows.Forms.PictureBox drawPictureBox;
+        private System.Windows.Forms.Label currentLayerLabel;
     }
 }
 

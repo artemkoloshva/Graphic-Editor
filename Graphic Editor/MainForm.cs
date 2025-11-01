@@ -12,7 +12,7 @@ namespace Graphic_Editor
 {
     public partial class MainForm : Form
     {
-        private const ushort MAX_SIZE_IMAGE = 5000;
+        private const ushort MAX_SIZE_IMAGE = 513;
         private const ushort DEFULT_HEIGHT = 32;
         private const ushort DEFULT_WIDTH = 32;
         private const byte DEFAULT_COLOR_R = 0;
@@ -20,14 +20,33 @@ namespace Graphic_Editor
         private const byte DEFAULT_COLOR_B = 0;
         private const byte DEFAULT_COLOR_A = 255;
 
+        private Color _currentColor;
+
         private ushort _heightImage;
         private ushort _widthImage;
-        private ushort _cellWidth = 0;
-        private ushort _cellHeight = 0;
+        private float _cellWidth = 0;
+        private float _cellHeight = 0;
         private short _hoveredCellX = -1;
         private short _hoveredCellY = -1;
-
-        private Color _currentColor;
+        private enum DrawingMode 
+        {
+            Pencil,
+            Eraser,
+            Fill,
+            FillPattern,
+            Line,
+            Curve,
+            Rectangle,
+            Circle,
+            Pipette
+        };
+        private enum PixelMode
+        {
+            Single,
+            Double,
+            Triple,
+            Quadruple
+        }
 
         public MainForm()
         {
@@ -35,7 +54,7 @@ namespace Graphic_Editor
             InitializeDefaultOptions();
 
             drawPictureBox.Parent = texturePictureBox;
-            currentPositionLabel.Enabled = false;
+            currentPositionLabel.Visible = false;
             ResizeDrawPictureBox();
         }
 
@@ -93,19 +112,19 @@ namespace Graphic_Editor
 
         private void DrawPictureBox_MouseMove(object sender, MouseEventArgs e)
         {
-            int cellX = e.X / _cellWidth;
-            int cellY = e.Y / _cellHeight;
+            short cellX = (short)(e.X / _cellWidth);
+            short cellY = (short)(e.Y / _cellHeight);
 
             if (cellX != _hoveredCellX || cellY != _hoveredCellY ||
                 cellX >= _widthImage || cellY >= _heightImage)
             {
-                _hoveredCellX = (short)cellX;
-                _hoveredCellY = (short)cellY;
+                _hoveredCellX = cellX;
+                _hoveredCellY = cellY;
                 drawPictureBox.Invalidate();
 
-                if (currentPositionLabel.Enabled != true)
+                if (currentPositionLabel.Visible != true)
                 {
-                    currentPositionLabel.Enabled = true;
+                    currentPositionLabel.Visible = true;
                 }
 
                 SetCurrentPositionLabel();
@@ -119,7 +138,7 @@ namespace Graphic_Editor
 
             drawPictureBox.Invalidate();
 
-            currentPositionLabel.Enabled = false;
+            currentPositionLabel.Visible = false;
         }
 
         private void InitializeDefaultOptions()
@@ -161,8 +180,8 @@ namespace Graphic_Editor
 
             if (_widthImage > 0 && _heightImage > 0)
             {
-                _cellWidth = (ushort)Math.Round((double)drawPictureBox.Width / _widthImage);
-                _cellHeight = (ushort)Math.Round((double)drawPictureBox.Height / _heightImage);
+                _cellWidth = (float)drawPictureBox.Width / _widthImage;
+                _cellHeight = (float)drawPictureBox.Height / _heightImage;
             }
 
             drawPictureBox.Invalidate();
