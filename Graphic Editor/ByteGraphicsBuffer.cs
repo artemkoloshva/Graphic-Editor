@@ -25,6 +25,10 @@ namespace Graphic_Editor
             this._height = height;
 
             _pixelData = new byte[width * height * 3];
+            for (int i = 0; i < _pixelData.Length; i++)
+            {
+                _pixelData[i] = 0;
+            }
         }
 
         /// <summary>

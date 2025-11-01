@@ -12,39 +12,170 @@ namespace Graphic_Editor
 {
     public partial class MainForm : Form
     {
-        private ushort _height;
-        private ushort _width;
-        private Color _color;
+        private const ushort MAX_SIZE_IMAGE = 5000;
+        private const ushort DEFULT_HEIGHT = 32;
+        private const ushort DEFULT_WIDTH = 32;
+        private const byte DEFAULT_COLOR_R = 0;
+        private const byte DEFAULT_COLOR_G = 0;
+        private const byte DEFAULT_COLOR_B = 0;
+        private const byte DEFAULT_COLOR_A = 255;
+
+        private ushort _heightImage;
+        private ushort _widthImage;
+        private ushort _cellWidth = 0;
+        private ushort _cellHeight = 0;
+        private short _hoveredCellX = -1;
+        private short _hoveredCellY = -1;
+
+        private Color _currentColor;
 
         public MainForm()
         {
             InitializeComponent();
+            InitializeDefaultOptions();
+
+            drawPictureBox.Parent = texturePictureBox;
+            currentPositionLabel.Enabled = false;
+            ResizeDrawPictureBox();
         }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            drawPictureBox.Invalidate();
+            texturePictureBox.Invalidate();
         }
 
-        private void DrawPictureBox_Resize(object sender, EventArgs e)
+        private void TexturePictureBox_Resize(object sender, EventArgs e)
         {
-            drawPictureBox.Invalidate();
+            texturePictureBox.Invalidate();
         }
 
-        private void DrawPictureBox_PaintTexture(object sender, PaintEventArgs e)
+        private void DrawPanel_Resize(object sender, EventArgs e)
         {
-            if (drawPictureBox.Image != null)
+            ResizeDrawPictureBox();
+        }
+
+        private void TexturePictureBox_Paint(object sender, PaintEventArgs e)
+        {
+            if (texturePictureBox.Image != null)
             {
-                using (TextureBrush brush = new TextureBrush(drawPictureBox.Image))
+                using (TextureBrush brush = new TextureBrush(texturePictureBox.Image))
                 {
-                    e.Graphics.FillRectangle(brush, drawPictureBox.ClientRectangle);
+                    e.Graphics.FillRectangle(brush, texturePictureBox.ClientRectangle);
                 }
             }
         }
 
-        private void ResizeButton_Click(object sender, EventArgs e)
+        private void DrawPictureBox_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void ResizeButton_Click(object sender, EventArgs e)
+        {
+            if (ushort.TryParse(heightTextBox.Text, out _heightImage) && 
+                ushort.TryParse(widthTextBox.Text, out _widthImage) && 
+                _heightImage < MAX_SIZE_IMAGE && 
+                _widthImage < MAX_SIZE_IMAGE) { }
+            else
+            {
+                _heightImage = DEFULT_HEIGHT;
+                _widthImage = DEFULT_WIDTH;
+
+                heightTextBox.Text = DEFULT_HEIGHT.ToString();
+                widthTextBox.Text = DEFULT_WIDTH.ToString();
+
+                MessageBox.Show($"Введите корректные числовые значения (0-{MAX_SIZE_IMAGE})");
+            }
+
+            ResizeDrawPictureBox();
+            SetCurrentSizeLabel();
+        }
+
+        private void DrawPictureBox_MouseMove(object sender, MouseEventArgs e)
+        {
+            int cellX = e.X / _cellWidth;
+            int cellY = e.Y / _cellHeight;
+
+            if (cellX != _hoveredCellX || cellY != _hoveredCellY ||
+                cellX >= _widthImage || cellY >= _heightImage)
+            {
+                _hoveredCellX = (short)cellX;
+                _hoveredCellY = (short)cellY;
+                drawPictureBox.Invalidate();
+
+                if (currentPositionLabel.Enabled != true)
+                {
+                    currentPositionLabel.Enabled = true;
+                }
+
+                SetCurrentPositionLabel();
+            }
+        }
+
+        private void DrawPictureBox_MouseLeave(object sender, EventArgs e)
+        {
+            _hoveredCellX = -1;
+            _hoveredCellY = -1;
+
+            drawPictureBox.Invalidate();
+
+            currentPositionLabel.Enabled = false;
+        }
+
+        private void InitializeDefaultOptions()
+        {
+            _heightImage = DEFULT_HEIGHT;
+            _widthImage = DEFULT_WIDTH;
+            widthTextBox.Text = _widthImage.ToString();
+            heightTextBox.Text = _heightImage.ToString();
+
+            gridCheckBox.Checked = false;
+
+            _currentColor = Color.FromArgb(DEFAULT_COLOR_A, DEFAULT_COLOR_R, DEFAULT_COLOR_G, DEFAULT_COLOR_B);
+            rTextBox.Text = DEFAULT_COLOR_R.ToString();
+            gTextBox.Text = DEFAULT_COLOR_G.ToString();
+            bTextBox.Text = DEFAULT_COLOR_B.ToString();
+            hexTextBox.Text = ColorTranslator.ToHtml(_currentColor);
+
+            currentColorPictureBox.BackColor = _currentColor;
+
+            SetCurrentSizeLabel();
+        }
+
+        private void ResizeDrawPictureBox()
+        {
+            float ratioOfTheSides = (float)_heightImage / _widthImage;
+
+            if (ratioOfTheSides >= 1)
+            {
+                texturePictureBox.Height = drawPanel.Height;
+                texturePictureBox.Width = (int)(texturePictureBox.Height / ratioOfTheSides);
+                texturePictureBox.Location = new Point(drawPanel.Width / 2 - texturePictureBox.Width / 2, 0);
+            }
+            else
+            {
+                texturePictureBox.Width = drawPanel.Width;
+                texturePictureBox.Height = (int)(texturePictureBox.Width * ratioOfTheSides);
+                texturePictureBox.Location = new Point(0, drawPanel.Height / 2 - texturePictureBox.Height / 2);
+            }
+
+            if (_widthImage > 0 && _heightImage > 0)
+            {
+                _cellWidth = (ushort)Math.Round((double)drawPictureBox.Width / _widthImage);
+                _cellHeight = (ushort)Math.Round((double)drawPictureBox.Height / _heightImage);
+            }
+
+            drawPictureBox.Invalidate();
+        } 
+
+        private void SetCurrentSizeLabel()
+        {
+            currentSizeLabel.Text = $"[{_widthImage}x{_heightImage}]";
+        }
+
+        private void SetCurrentPositionLabel()
+        {
+            currentPositionLabel.Text = $"{_hoveredCellX}:{_hoveredCellY}";
         }
     }
 }

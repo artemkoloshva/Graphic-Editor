@@ -29,7 +29,7 @@ namespace Graphic_Editor
         /// <param name="y"></param>
         public static void DeletePixel(ByteGraphicsBuffer buffer, int x, int y)
         {
-            buffer.SetPixel(x, y, 0, 0, 0, 255);
+            buffer.SetPixel(x, y, 0, 0, 0, 0);
         }
 
         /// <summary>

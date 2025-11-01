@@ -52,13 +52,13 @@
             this.gLabel = new System.Windows.Forms.Label();
             this.rTextBox = new System.Windows.Forms.TextBox();
             this.rLabel = new System.Windows.Forms.Label();
-            this.colorPictureBox = new System.Windows.Forms.PictureBox();
+            this.currentColorPictureBox = new System.Windows.Forms.PictureBox();
             this.removeColorPictureBox = new System.Windows.Forms.PictureBox();
             this.colorLabel = new System.Windows.Forms.Label();
             this.gridCheckBox = new System.Windows.Forms.CheckBox();
-            this.currentZoom = new System.Windows.Forms.Label();
-            this.currentLayer = new System.Windows.Forms.Label();
-            this.currentPosition = new System.Windows.Forms.Label();
+            this.currentZoomLabel = new System.Windows.Forms.Label();
+            this.currentLayerLabel = new System.Windows.Forms.Label();
+            this.currentPositionLabel = new System.Windows.Forms.Label();
             this.currentSizeLabel = new System.Windows.Forms.Label();
             this.resizeButton = new System.Windows.Forms.Button();
             this.pxLabel2 = new System.Windows.Forms.Label();
@@ -70,16 +70,18 @@
             this.sizeLabel = new System.Windows.Forms.Label();
             this.drawPanel = new System.Windows.Forms.Panel();
             this.drawPictureBox = new System.Windows.Forms.PictureBox();
+            this.texturePictureBox = new System.Windows.Forms.PictureBox();
             this.namePanel = new System.Windows.Forms.Panel();
             this.createNewPictureButton = new System.Windows.Forms.Button();
             this.pictureNameLabel = new System.Windows.Forms.Label();
             this.ProjectNameLabel = new System.Windows.Forms.Label();
             this.panelLeft.SuspendLayout();
             this.panelRight.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.colorPictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.currentColorPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.removeColorPictureBox)).BeginInit();
             this.drawPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.drawPictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.texturePictureBox)).BeginInit();
             this.namePanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -257,13 +259,13 @@
             this.panelRight.Controls.Add(this.gLabel);
             this.panelRight.Controls.Add(this.rTextBox);
             this.panelRight.Controls.Add(this.rLabel);
-            this.panelRight.Controls.Add(this.colorPictureBox);
+            this.panelRight.Controls.Add(this.currentColorPictureBox);
             this.panelRight.Controls.Add(this.removeColorPictureBox);
             this.panelRight.Controls.Add(this.colorLabel);
             this.panelRight.Controls.Add(this.gridCheckBox);
-            this.panelRight.Controls.Add(this.currentZoom);
-            this.panelRight.Controls.Add(this.currentLayer);
-            this.panelRight.Controls.Add(this.currentPosition);
+            this.panelRight.Controls.Add(this.currentZoomLabel);
+            this.panelRight.Controls.Add(this.currentLayerLabel);
+            this.panelRight.Controls.Add(this.currentPositionLabel);
             this.panelRight.Controls.Add(this.currentSizeLabel);
             this.panelRight.Controls.Add(this.resizeButton);
             this.panelRight.Controls.Add(this.pxLabel2);
@@ -292,7 +294,6 @@
             this.hexTextBox.Name = "hexTextBox";
             this.hexTextBox.Size = new System.Drawing.Size(151, 35);
             this.hexTextBox.TabIndex = 22;
-            this.hexTextBox.Text = "#000000";
             this.hexTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // hexLabel
@@ -319,7 +320,6 @@
             this.bTextBox.Name = "bTextBox";
             this.bTextBox.Size = new System.Drawing.Size(71, 35);
             this.bTextBox.TabIndex = 20;
-            this.bTextBox.Text = "0";
             this.bTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // bLabel
@@ -346,7 +346,6 @@
             this.gTextBox.Name = "gTextBox";
             this.gTextBox.Size = new System.Drawing.Size(71, 35);
             this.gTextBox.TabIndex = 18;
-            this.gTextBox.Text = "0";
             this.gTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // gLabel
@@ -373,7 +372,6 @@
             this.rTextBox.Name = "rTextBox";
             this.rTextBox.Size = new System.Drawing.Size(71, 35);
             this.rTextBox.TabIndex = 16;
-            this.rTextBox.Text = "0";
             this.rTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // rLabel
@@ -389,14 +387,14 @@
             this.rLabel.TabIndex = 15;
             this.rLabel.Text = "R:";
             // 
-            // colorPictureBox
+            // currentColorPictureBox
             // 
-            this.colorPictureBox.BackColor = System.Drawing.Color.Black;
-            this.colorPictureBox.Location = new System.Drawing.Point(72, 664);
-            this.colorPictureBox.Name = "colorPictureBox";
-            this.colorPictureBox.Size = new System.Drawing.Size(150, 150);
-            this.colorPictureBox.TabIndex = 14;
-            this.colorPictureBox.TabStop = false;
+            this.currentColorPictureBox.BackColor = System.Drawing.Color.Black;
+            this.currentColorPictureBox.Location = new System.Drawing.Point(72, 664);
+            this.currentColorPictureBox.Name = "currentColorPictureBox";
+            this.currentColorPictureBox.Size = new System.Drawing.Size(150, 150);
+            this.currentColorPictureBox.TabIndex = 14;
+            this.currentColorPictureBox.TabStop = false;
             // 
             // removeColorPictureBox
             // 
@@ -432,41 +430,41 @@
             this.gridCheckBox.Text = "Grid";
             this.gridCheckBox.UseVisualStyleBackColor = true;
             // 
-            // currentZoom
+            // currentZoomLabel
             // 
-            this.currentZoom.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.currentZoom.AutoSize = true;
-            this.currentZoom.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.currentZoom.ForeColor = System.Drawing.Color.Gold;
-            this.currentZoom.Location = new System.Drawing.Point(9, 889);
-            this.currentZoom.Name = "currentZoom";
-            this.currentZoom.Size = new System.Drawing.Size(53, 25);
-            this.currentZoom.TabIndex = 10;
-            this.currentZoom.Text = "x1.0";
+            this.currentZoomLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.currentZoomLabel.AutoSize = true;
+            this.currentZoomLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.currentZoomLabel.ForeColor = System.Drawing.Color.Gold;
+            this.currentZoomLabel.Location = new System.Drawing.Point(9, 889);
+            this.currentZoomLabel.Name = "currentZoomLabel";
+            this.currentZoomLabel.Size = new System.Drawing.Size(53, 25);
+            this.currentZoomLabel.TabIndex = 10;
+            this.currentZoomLabel.Text = "x1.0";
             // 
-            // currentLayer
+            // currentLayerLabel
             // 
-            this.currentLayer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.currentLayer.AutoSize = true;
-            this.currentLayer.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.currentLayer.ForeColor = System.Drawing.Color.Gold;
-            this.currentLayer.Location = new System.Drawing.Point(9, 939);
-            this.currentLayer.Name = "currentLayer";
-            this.currentLayer.Size = new System.Drawing.Size(43, 25);
-            this.currentLayer.TabIndex = 9;
-            this.currentLayer.Text = "1/1";
+            this.currentLayerLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.currentLayerLabel.AutoSize = true;
+            this.currentLayerLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.currentLayerLabel.ForeColor = System.Drawing.Color.Gold;
+            this.currentLayerLabel.Location = new System.Drawing.Point(9, 939);
+            this.currentLayerLabel.Name = "currentLayerLabel";
+            this.currentLayerLabel.Size = new System.Drawing.Size(43, 25);
+            this.currentLayerLabel.TabIndex = 9;
+            this.currentLayerLabel.Text = "1/1";
             // 
-            // currentPosition
+            // currentPositionLabel
             // 
-            this.currentPosition.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.currentPosition.AutoSize = true;
-            this.currentPosition.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.currentPosition.ForeColor = System.Drawing.Color.Gold;
-            this.currentPosition.Location = new System.Drawing.Point(100, 914);
-            this.currentPosition.Name = "currentPosition";
-            this.currentPosition.Size = new System.Drawing.Size(43, 25);
-            this.currentPosition.TabIndex = 8;
-            this.currentPosition.Text = "0:0";
+            this.currentPositionLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.currentPositionLabel.AutoSize = true;
+            this.currentPositionLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.currentPositionLabel.ForeColor = System.Drawing.Color.Gold;
+            this.currentPositionLabel.Location = new System.Drawing.Point(100, 914);
+            this.currentPositionLabel.Name = "currentPositionLabel";
+            this.currentPositionLabel.Size = new System.Drawing.Size(43, 25);
+            this.currentPositionLabel.TabIndex = 8;
+            this.currentPositionLabel.Text = "0:0";
             // 
             // currentSizeLabel
             // 
@@ -476,9 +474,9 @@
             this.currentSizeLabel.ForeColor = System.Drawing.Color.Gold;
             this.currentSizeLabel.Location = new System.Drawing.Point(9, 914);
             this.currentSizeLabel.Name = "currentSizeLabel";
-            this.currentSizeLabel.Size = new System.Drawing.Size(85, 25);
+            this.currentSizeLabel.Size = new System.Drawing.Size(61, 25);
             this.currentSizeLabel.TabIndex = 7;
-            this.currentSizeLabel.Text = "[32x32]";
+            this.currentSizeLabel.Text = "[0x0]";
             // 
             // resizeButton
             // 
@@ -528,7 +526,6 @@
             this.heightTextBox.Name = "heightTextBox";
             this.heightTextBox.Size = new System.Drawing.Size(119, 35);
             this.heightTextBox.TabIndex = 4;
-            this.heightTextBox.Text = "32";
             this.heightTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // widthTextBox
@@ -541,7 +538,6 @@
             this.widthTextBox.Name = "widthTextBox";
             this.widthTextBox.Size = new System.Drawing.Size(119, 35);
             this.widthTextBox.TabIndex = 3;
-            this.widthTextBox.Text = "32";
             this.widthTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // heightLabel
@@ -587,24 +583,39 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.drawPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
             this.drawPanel.Controls.Add(this.drawPictureBox);
+            this.drawPanel.Controls.Add(this.texturePictureBox);
             this.drawPanel.Location = new System.Drawing.Point(406, 90);
             this.drawPanel.Name = "drawPanel";
-            this.drawPanel.Size = new System.Drawing.Size(953, 837);
+            this.drawPanel.Size = new System.Drawing.Size(970, 837);
             this.drawPanel.TabIndex = 3;
+            this.drawPanel.Resize += new System.EventHandler(this.DrawPanel_Resize);
             // 
             // drawPictureBox
             // 
-            this.drawPictureBox.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.drawPictureBox.BackColor = System.Drawing.SystemColors.GrayText;
-            this.drawPictureBox.Image = ((System.Drawing.Image)(resources.GetObject("drawPictureBox.Image")));
-            this.drawPictureBox.InitialImage = ((System.Drawing.Image)(resources.GetObject("drawPictureBox.InitialImage")));
-            this.drawPictureBox.Location = new System.Drawing.Point(7, 99);
+            this.drawPictureBox.BackColor = System.Drawing.Color.Transparent;
+            this.drawPictureBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.drawPictureBox.Location = new System.Drawing.Point(0, 0);
             this.drawPictureBox.Name = "drawPictureBox";
-            this.drawPictureBox.Size = new System.Drawing.Size(927, 627);
-            this.drawPictureBox.TabIndex = 0;
+            this.drawPictureBox.Size = new System.Drawing.Size(970, 837);
+            this.drawPictureBox.TabIndex = 1;
             this.drawPictureBox.TabStop = false;
-            this.drawPictureBox.Paint += new System.Windows.Forms.PaintEventHandler(this.DrawPictureBox_PaintTexture);
-            this.drawPictureBox.Resize += new System.EventHandler(this.DrawPictureBox_Resize);
+            this.drawPictureBox.Paint += new System.Windows.Forms.PaintEventHandler(this.DrawPictureBox_Paint);
+            this.drawPictureBox.MouseLeave += new System.EventHandler(this.DrawPictureBox_MouseLeave);
+            this.drawPictureBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.DrawPictureBox_MouseMove);
+            // 
+            // texturePictureBox
+            // 
+            this.texturePictureBox.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.texturePictureBox.BackColor = System.Drawing.SystemColors.GrayText;
+            this.texturePictureBox.Image = ((System.Drawing.Image)(resources.GetObject("texturePictureBox.Image")));
+            this.texturePictureBox.InitialImage = ((System.Drawing.Image)(resources.GetObject("texturePictureBox.InitialImage")));
+            this.texturePictureBox.Location = new System.Drawing.Point(0, 0);
+            this.texturePictureBox.Name = "texturePictureBox";
+            this.texturePictureBox.Size = new System.Drawing.Size(124, 115);
+            this.texturePictureBox.TabIndex = 0;
+            this.texturePictureBox.TabStop = false;
+            this.texturePictureBox.Paint += new System.Windows.Forms.PaintEventHandler(this.TexturePictureBox_Paint);
+            this.texturePictureBox.Resize += new System.EventHandler(this.TexturePictureBox_Resize);
             // 
             // namePanel
             // 
@@ -672,10 +683,11 @@
             this.panelLeft.ResumeLayout(false);
             this.panelRight.ResumeLayout(false);
             this.panelRight.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.colorPictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.currentColorPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.removeColorPictureBox)).EndInit();
             this.drawPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.drawPictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.texturePictureBox)).EndInit();
             this.namePanel.ResumeLayout(false);
             this.namePanel.PerformLayout();
             this.ResumeLayout(false);
@@ -687,7 +699,7 @@
         private System.Windows.Forms.Panel panelLeft;
         private System.Windows.Forms.Panel panelRight;
         private System.Windows.Forms.Panel drawPanel;
-        private System.Windows.Forms.PictureBox drawPictureBox;
+        private System.Windows.Forms.PictureBox texturePictureBox;
         private System.Windows.Forms.Panel namePanel;
         private System.Windows.Forms.Label ProjectNameLabel;
         private System.Windows.Forms.Label pictureNameLabel;
@@ -701,9 +713,9 @@
         private System.Windows.Forms.TextBox heightTextBox;
         private System.Windows.Forms.Button resizeButton;
         private System.Windows.Forms.Label currentSizeLabel;
-        private System.Windows.Forms.Label currentZoom;
-        private System.Windows.Forms.Label currentLayer;
-        private System.Windows.Forms.Label currentPosition;
+        private System.Windows.Forms.Label currentZoomLabel;
+        private System.Windows.Forms.Label currentLayerLabel;
+        private System.Windows.Forms.Label currentPositionLabel;
         private System.Windows.Forms.Button button9;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button6;
@@ -717,7 +729,7 @@
         private System.Windows.Forms.Button button11;
         private System.Windows.Forms.Button button10;
         private System.Windows.Forms.PictureBox removeColorPictureBox;
-        private System.Windows.Forms.PictureBox colorPictureBox;
+        private System.Windows.Forms.PictureBox currentColorPictureBox;
         private System.Windows.Forms.CheckBox gridCheckBox;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label colorLabel;
@@ -729,6 +741,7 @@
         private System.Windows.Forms.Label rLabel;
         private System.Windows.Forms.TextBox hexTextBox;
         private System.Windows.Forms.Label hexLabel;
+        private System.Windows.Forms.PictureBox drawPictureBox;
     }
 }
 
