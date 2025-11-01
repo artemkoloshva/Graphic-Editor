@@ -30,10 +30,10 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.panelLeft = new System.Windows.Forms.Panel();
-            this.button13 = new System.Windows.Forms.Button();
-            this.button12 = new System.Windows.Forms.Button();
-            this.button11 = new System.Windows.Forms.Button();
-            this.button10 = new System.Windows.Forms.Button();
+            this.quadrupleModeButton = new System.Windows.Forms.Button();
+            this.tripleModeButton = new System.Windows.Forms.Button();
+            this.doubleModeButton = new System.Windows.Forms.Button();
+            this.singleModeButton = new System.Windows.Forms.Button();
             this.pipetteButton = new System.Windows.Forms.Button();
             this.circleButton = new System.Windows.Forms.Button();
             this.rectangleButton = new System.Windows.Forms.Button();
@@ -88,10 +88,10 @@
             // panelLeft
             // 
             this.panelLeft.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(29)))), ((int)(((byte)(29)))));
-            this.panelLeft.Controls.Add(this.button13);
-            this.panelLeft.Controls.Add(this.button12);
-            this.panelLeft.Controls.Add(this.button11);
-            this.panelLeft.Controls.Add(this.button10);
+            this.panelLeft.Controls.Add(this.quadrupleModeButton);
+            this.panelLeft.Controls.Add(this.tripleModeButton);
+            this.panelLeft.Controls.Add(this.doubleModeButton);
+            this.panelLeft.Controls.Add(this.singleModeButton);
             this.panelLeft.Controls.Add(this.pipetteButton);
             this.panelLeft.Controls.Add(this.circleButton);
             this.panelLeft.Controls.Add(this.rectangleButton);
@@ -109,45 +109,49 @@
             this.panelLeft.Size = new System.Drawing.Size(400, 980);
             this.panelLeft.TabIndex = 1;
             // 
-            // button13
+            // quadrupleModeButton
             // 
-            this.button13.BackgroundImage = global::Graphic_Editor.Properties.Resources._4;
-            this.button13.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button13.Location = new System.Drawing.Point(240, 125);
-            this.button13.Name = "button13";
-            this.button13.Size = new System.Drawing.Size(35, 35);
-            this.button13.TabIndex = 12;
-            this.button13.UseVisualStyleBackColor = true;
+            this.quadrupleModeButton.BackgroundImage = global::Graphic_Editor.Properties.Resources._4;
+            this.quadrupleModeButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.quadrupleModeButton.Location = new System.Drawing.Point(240, 125);
+            this.quadrupleModeButton.Name = "quadrupleModeButton";
+            this.quadrupleModeButton.Size = new System.Drawing.Size(35, 35);
+            this.quadrupleModeButton.TabIndex = 12;
+            this.quadrupleModeButton.UseVisualStyleBackColor = true;
+            this.quadrupleModeButton.Click += new System.EventHandler(this.QuadrupleModeButton_Click);
             // 
-            // button12
+            // tripleModeButton
             // 
-            this.button12.BackgroundImage = global::Graphic_Editor.Properties.Resources._3;
-            this.button12.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button12.Location = new System.Drawing.Point(199, 125);
-            this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(35, 35);
-            this.button12.TabIndex = 11;
-            this.button12.UseVisualStyleBackColor = true;
+            this.tripleModeButton.BackgroundImage = global::Graphic_Editor.Properties.Resources._3;
+            this.tripleModeButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.tripleModeButton.Location = new System.Drawing.Point(199, 125);
+            this.tripleModeButton.Name = "tripleModeButton";
+            this.tripleModeButton.Size = new System.Drawing.Size(35, 35);
+            this.tripleModeButton.TabIndex = 11;
+            this.tripleModeButton.UseVisualStyleBackColor = true;
+            this.tripleModeButton.Click += new System.EventHandler(this.TripleModeButton_Click);
             // 
-            // button11
+            // doubleModeButton
             // 
-            this.button11.BackgroundImage = global::Graphic_Editor.Properties.Resources._2;
-            this.button11.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button11.Location = new System.Drawing.Point(158, 125);
-            this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(35, 35);
-            this.button11.TabIndex = 10;
-            this.button11.UseVisualStyleBackColor = true;
+            this.doubleModeButton.BackgroundImage = global::Graphic_Editor.Properties.Resources._2;
+            this.doubleModeButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.doubleModeButton.Location = new System.Drawing.Point(158, 125);
+            this.doubleModeButton.Name = "doubleModeButton";
+            this.doubleModeButton.Size = new System.Drawing.Size(35, 35);
+            this.doubleModeButton.TabIndex = 10;
+            this.doubleModeButton.UseVisualStyleBackColor = true;
+            this.doubleModeButton.Click += new System.EventHandler(this.DoubleModeButton_Click);
             // 
-            // button10
+            // singleModeButton
             // 
-            this.button10.BackgroundImage = global::Graphic_Editor.Properties.Resources._1;
-            this.button10.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button10.Location = new System.Drawing.Point(117, 125);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(35, 35);
-            this.button10.TabIndex = 9;
-            this.button10.UseVisualStyleBackColor = true;
+            this.singleModeButton.BackgroundImage = global::Graphic_Editor.Properties.Resources._1;
+            this.singleModeButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.singleModeButton.Location = new System.Drawing.Point(117, 125);
+            this.singleModeButton.Name = "singleModeButton";
+            this.singleModeButton.Size = new System.Drawing.Size(35, 35);
+            this.singleModeButton.TabIndex = 9;
+            this.singleModeButton.UseVisualStyleBackColor = true;
+            this.singleModeButton.Click += new System.EventHandler(this.SingleModeButton_Click);
             // 
             // pipetteButton
             // 
@@ -159,6 +163,7 @@
             this.pipetteButton.Size = new System.Drawing.Size(125, 125);
             this.pipetteButton.TabIndex = 8;
             this.pipetteButton.UseVisualStyleBackColor = true;
+            this.pipetteButton.Click += new System.EventHandler(this.PipetteButton_Click);
             // 
             // circleButton
             // 
@@ -170,6 +175,7 @@
             this.circleButton.Size = new System.Drawing.Size(125, 125);
             this.circleButton.TabIndex = 7;
             this.circleButton.UseVisualStyleBackColor = true;
+            this.circleButton.Click += new System.EventHandler(this.CircleButton_Click);
             // 
             // rectangleButton
             // 
@@ -181,6 +187,7 @@
             this.rectangleButton.Size = new System.Drawing.Size(125, 125);
             this.rectangleButton.TabIndex = 6;
             this.rectangleButton.UseVisualStyleBackColor = true;
+            this.rectangleButton.Click += new System.EventHandler(this.RectangleButton_Click);
             // 
             // curveButton
             // 
@@ -192,6 +199,7 @@
             this.curveButton.Size = new System.Drawing.Size(125, 125);
             this.curveButton.TabIndex = 5;
             this.curveButton.UseVisualStyleBackColor = true;
+            this.curveButton.Click += new System.EventHandler(this.CurveButton_Click);
             // 
             // lineButton
             // 
@@ -203,6 +211,7 @@
             this.lineButton.Size = new System.Drawing.Size(125, 125);
             this.lineButton.TabIndex = 4;
             this.lineButton.UseVisualStyleBackColor = true;
+            this.lineButton.Click += new System.EventHandler(this.LineButton_Click);
             // 
             // fillPatternButton
             // 
@@ -214,6 +223,7 @@
             this.fillPatternButton.Size = new System.Drawing.Size(125, 125);
             this.fillPatternButton.TabIndex = 3;
             this.fillPatternButton.UseVisualStyleBackColor = true;
+            this.fillPatternButton.Click += new System.EventHandler(this.FillPatternButton_Click);
             // 
             // fillButton
             // 
@@ -225,6 +235,7 @@
             this.fillButton.Size = new System.Drawing.Size(125, 125);
             this.fillButton.TabIndex = 2;
             this.fillButton.UseVisualStyleBackColor = true;
+            this.fillButton.Click += new System.EventHandler(this.FillButton_Click);
             // 
             // eraserButton
             // 
@@ -236,6 +247,7 @@
             this.eraserButton.Size = new System.Drawing.Size(125, 125);
             this.eraserButton.TabIndex = 1;
             this.eraserButton.UseVisualStyleBackColor = true;
+            this.eraserButton.Click += new System.EventHandler(this.EraserButton_Click);
             // 
             // pencilButton
             // 
@@ -247,6 +259,7 @@
             this.pencilButton.Size = new System.Drawing.Size(125, 125);
             this.pencilButton.TabIndex = 0;
             this.pencilButton.UseVisualStyleBackColor = true;
+            this.pencilButton.Click += new System.EventHandler(this.PencilButton_Click);
             // 
             // panelRight
             // 
@@ -723,10 +736,10 @@
         private System.Windows.Forms.Button fillPatternButton;
         private System.Windows.Forms.Button fillButton;
         private System.Windows.Forms.Button eraserButton;
-        private System.Windows.Forms.Button button13;
-        private System.Windows.Forms.Button button12;
-        private System.Windows.Forms.Button button11;
-        private System.Windows.Forms.Button button10;
+        private System.Windows.Forms.Button quadrupleModeButton;
+        private System.Windows.Forms.Button tripleModeButton;
+        private System.Windows.Forms.Button doubleModeButton;
+        private System.Windows.Forms.Button singleModeButton;
         private System.Windows.Forms.PictureBox removeColorPictureBox;
         private System.Windows.Forms.PictureBox currentColorPictureBox;
         private System.Windows.Forms.CheckBox gridCheckBox;

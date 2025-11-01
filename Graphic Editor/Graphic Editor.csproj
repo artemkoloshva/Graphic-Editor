@@ -47,6 +47,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ByteGraphicsBuffer.cs" />
+    <Compile Include="PixelMode.cs" />
+    <Compile Include="DrawingMode.cs" />
     <Compile Include="Graphics.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
