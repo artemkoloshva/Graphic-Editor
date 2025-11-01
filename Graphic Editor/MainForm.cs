@@ -19,10 +19,14 @@ namespace Graphic_Editor
         private const byte DEFAULT_COLOR_G = 0;
         private const byte DEFAULT_COLOR_B = 0;
         private const byte DEFAULT_COLOR_A = 255;
+        private const byte CURRENT_MODE_BORDERSIZE = 2;
+        private const byte DEFAULT_MODE_BORDERSIZE = 1;
 
         private Color _currentColor;
         private DrawingMode _drawingMode = DrawingMode.Pencil;
         private PixelMode _pixelMode = PixelMode.Single;
+        private Button _currentDrawingModdeButton;
+        private Button _currentPixelModdeButton;
 
         private ushort _heightImage;
         private ushort _widthImage;
@@ -35,9 +39,7 @@ namespace Graphic_Editor
         {
             InitializeComponent();
             InitializeDefaultOptions();
-
-            drawPictureBox.Parent = texturePictureBox;
-            currentPositionLabel.Visible = false;
+            SetCurrentSizeLabel();
             ResizeDrawPictureBox();
         }
 
@@ -127,66 +129,79 @@ namespace Graphic_Editor
         private void SingleModeButton_Click(object sender, EventArgs e)
         {
             _pixelMode = PixelMode.Single;
+            SetModeButton(singleModeButton, ref _currentPixelModdeButton);
         }
 
         private void DoubleModeButton_Click(object sender, EventArgs e)
         {
             _pixelMode = PixelMode.Double;
+            SetModeButton(doubleModeButton, ref _currentPixelModdeButton);
         }
 
         private void TripleModeButton_Click(object sender, EventArgs e)
         {
             _pixelMode = PixelMode.Triple;
+            SetModeButton(tripleModeButton, ref _currentPixelModdeButton);
         }
 
         private void QuadrupleModeButton_Click(object sender, EventArgs e)
         {
             _pixelMode = PixelMode.Quadruple;
+            SetModeButton(quadrupleModeButton, ref _currentPixelModdeButton);
         }
 
         private void PencilButton_Click(object sender, EventArgs e)
         {
             _drawingMode = DrawingMode.Pencil;
+            SetModeButton(pencilButton, ref _currentDrawingModdeButton);
         }
 
         private void EraserButton_Click(object sender, EventArgs e)
         {
             _drawingMode = DrawingMode.Eraser;
+            SetModeButton(eraserButton, ref _currentDrawingModdeButton);
         }
 
         private void FillButton_Click(object sender, EventArgs e)
         {
             _drawingMode = DrawingMode.Fill;
+            SetModeButton(fillButton, ref _currentDrawingModdeButton);
         }
 
         private void FillPatternButton_Click(object sender, EventArgs e)
         {
             _drawingMode = DrawingMode.FillPattern;
+            SetModeButton(fillPatternButton, ref _currentDrawingModdeButton);
         }
 
         private void LineButton_Click(object sender, EventArgs e)
         {
             _drawingMode = DrawingMode.Line;
+            SetModeButton(lineButton, ref _currentDrawingModdeButton);
         }
 
         private void CurveButton_Click(object sender, EventArgs e)
         {
             _drawingMode = DrawingMode.Curve;
+            SetModeButton(curveButton, ref _currentDrawingModdeButton);
         }
 
         private void RectangleButton_Click(object sender, EventArgs e)
         {
             _drawingMode = DrawingMode.Rectangle;
+            SetModeButton(rectangleButton, ref _currentDrawingModdeButton);
         }
 
         private void CircleButton_Click(object sender, EventArgs e)
         {
             _drawingMode = DrawingMode.Circle;
+            SetModeButton(circleButton, ref _currentDrawingModdeButton);
         }
 
         private void PipetteButton_Click(object sender, EventArgs e)
         {
             _drawingMode = DrawingMode.Pipette;
+            SetModeButton(pipetteButton, ref _currentDrawingModdeButton);
         }
 
         private void InitializeDefaultOptions()
@@ -206,7 +221,15 @@ namespace Graphic_Editor
 
             currentColorPictureBox.BackColor = _currentColor;
 
-            SetCurrentSizeLabel();
+            _currentDrawingModdeButton = pencilButton;
+            _currentPixelModdeButton = singleModeButton;
+            _currentDrawingModdeButton.FlatAppearance.BorderColor = Color.Gold;
+            _currentDrawingModdeButton.FlatAppearance.BorderSize = CURRENT_MODE_BORDERSIZE;
+            _currentPixelModdeButton.FlatAppearance.BorderColor = Color.Gold;
+            _currentPixelModdeButton.FlatAppearance.BorderSize = CURRENT_MODE_BORDERSIZE;
+
+            drawPictureBox.Parent = texturePictureBox;
+            currentPositionLabel.Visible = false;
         }
 
         private void ResizeDrawPictureBox()
@@ -243,6 +266,20 @@ namespace Graphic_Editor
         private void SetCurrentPositionLabel()
         {
             currentPositionLabel.Text = $"{_hoveredCellX}:{_hoveredCellY}";
+        }
+
+        private void SetModeButton(Button setButton, ref Button currentButton)
+        {
+            if(setButton != currentButton)
+            {
+                setButton.FlatAppearance.BorderColor = Color.Gold;
+                setButton.FlatAppearance.BorderSize = CURRENT_MODE_BORDERSIZE;
+
+                currentButton.FlatAppearance.BorderColor = Color.Black;
+                currentButton.FlatAppearance.BorderSize = DEFAULT_MODE_BORDERSIZE;
+
+                currentButton = setButton;
+            }
         }
     }
 }

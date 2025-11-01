@@ -113,6 +113,7 @@
             // 
             this.quadrupleModeButton.BackgroundImage = global::Graphic_Editor.Properties.Resources._4;
             this.quadrupleModeButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.quadrupleModeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.quadrupleModeButton.Location = new System.Drawing.Point(240, 125);
             this.quadrupleModeButton.Name = "quadrupleModeButton";
             this.quadrupleModeButton.Size = new System.Drawing.Size(35, 35);
@@ -124,6 +125,7 @@
             // 
             this.tripleModeButton.BackgroundImage = global::Graphic_Editor.Properties.Resources._3;
             this.tripleModeButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.tripleModeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.tripleModeButton.Location = new System.Drawing.Point(199, 125);
             this.tripleModeButton.Name = "tripleModeButton";
             this.tripleModeButton.Size = new System.Drawing.Size(35, 35);
@@ -135,6 +137,7 @@
             // 
             this.doubleModeButton.BackgroundImage = global::Graphic_Editor.Properties.Resources._2;
             this.doubleModeButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.doubleModeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.doubleModeButton.Location = new System.Drawing.Point(158, 125);
             this.doubleModeButton.Name = "doubleModeButton";
             this.doubleModeButton.Size = new System.Drawing.Size(35, 35);
@@ -146,6 +149,7 @@
             // 
             this.singleModeButton.BackgroundImage = global::Graphic_Editor.Properties.Resources._1;
             this.singleModeButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.singleModeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.singleModeButton.Location = new System.Drawing.Point(117, 125);
             this.singleModeButton.Name = "singleModeButton";
             this.singleModeButton.Size = new System.Drawing.Size(35, 35);
@@ -157,6 +161,7 @@
             // 
             this.pipetteButton.BackgroundImage = global::Graphic_Editor.Properties.Resources.copyСolor;
             this.pipetteButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pipetteButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.pipetteButton.Location = new System.Drawing.Point(132, 772);
             this.pipetteButton.Margin = new System.Windows.Forms.Padding(10);
             this.pipetteButton.Name = "pipetteButton";
@@ -169,6 +174,7 @@
             // 
             this.circleButton.BackgroundImage = global::Graphic_Editor.Properties.Resources.circle;
             this.circleButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.circleButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.circleButton.Location = new System.Drawing.Point(206, 627);
             this.circleButton.Margin = new System.Windows.Forms.Padding(10);
             this.circleButton.Name = "circleButton";
@@ -181,6 +187,7 @@
             // 
             this.rectangleButton.BackgroundImage = global::Graphic_Editor.Properties.Resources.rectangle;
             this.rectangleButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.rectangleButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rectangleButton.Location = new System.Drawing.Point(61, 627);
             this.rectangleButton.Margin = new System.Windows.Forms.Padding(10);
             this.rectangleButton.Name = "rectangleButton";
@@ -193,6 +200,7 @@
             // 
             this.curveButton.BackgroundImage = global::Graphic_Editor.Properties.Resources.curve1;
             this.curveButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.curveButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.curveButton.Location = new System.Drawing.Point(206, 482);
             this.curveButton.Margin = new System.Windows.Forms.Padding(10);
             this.curveButton.Name = "curveButton";
@@ -205,6 +213,7 @@
             // 
             this.lineButton.BackgroundImage = global::Graphic_Editor.Properties.Resources.line;
             this.lineButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.lineButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.lineButton.Location = new System.Drawing.Point(61, 482);
             this.lineButton.Margin = new System.Windows.Forms.Padding(10);
             this.lineButton.Name = "lineButton";
@@ -217,6 +226,7 @@
             // 
             this.fillPatternButton.BackgroundImage = global::Graphic_Editor.Properties.Resources.fillingPattern;
             this.fillPatternButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.fillPatternButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.fillPatternButton.Location = new System.Drawing.Point(206, 337);
             this.fillPatternButton.Margin = new System.Windows.Forms.Padding(10);
             this.fillPatternButton.Name = "fillPatternButton";
@@ -229,6 +239,7 @@
             // 
             this.fillButton.BackgroundImage = global::Graphic_Editor.Properties.Resources.filling;
             this.fillButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.fillButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.fillButton.Location = new System.Drawing.Point(61, 337);
             this.fillButton.Margin = new System.Windows.Forms.Padding(10);
             this.fillButton.Name = "fillButton";
@@ -241,6 +252,7 @@
             // 
             this.eraserButton.BackgroundImage = global::Graphic_Editor.Properties.Resources.eraser;
             this.eraserButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.eraserButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.eraserButton.Location = new System.Drawing.Point(206, 192);
             this.eraserButton.Margin = new System.Windows.Forms.Padding(10);
             this.eraserButton.Name = "eraserButton";
@@ -253,6 +265,7 @@
             // 
             this.pencilButton.BackgroundImage = global::Graphic_Editor.Properties.Resources.pencil;
             this.pencilButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pencilButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.pencilButton.Location = new System.Drawing.Point(61, 192);
             this.pencilButton.Margin = new System.Windows.Forms.Padding(10);
             this.pencilButton.Name = "pencilButton";
@@ -495,7 +508,8 @@
             // 
             this.resizeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.resizeButton.BackColor = System.Drawing.Color.Gold;
-            this.resizeButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.resizeButton.FlatAppearance.BorderSize = 0;
+            this.resizeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.resizeButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.resizeButton.Location = new System.Drawing.Point(105, 261);
             this.resizeButton.Name = "resizeButton";
@@ -647,7 +661,8 @@
             // 
             this.createNewPictureButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.createNewPictureButton.BackColor = System.Drawing.Color.Gold;
-            this.createNewPictureButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.createNewPictureButton.FlatAppearance.BorderSize = 0;
+            this.createNewPictureButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.createNewPictureButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.createNewPictureButton.Location = new System.Drawing.Point(1504, 12);
             this.createNewPictureButton.Name = "createNewPictureButton";
