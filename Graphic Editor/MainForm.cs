@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -77,33 +78,18 @@ namespace Graphic_Editor
 
         private void DrawPictureBox_MouseMove(object sender, MouseEventArgs e)
         {
-            short cellX = (short)(e.X / _cellWidth);
-            short cellY = (short)(e.Y / _cellHeight);
-
-            if (cellX != _hoveredCellX || cellY != _hoveredCellY ||
-                cellX >= _widthImage || cellY >= _heightImage)
-            {
-                _hoveredCellX = cellX;
-                _hoveredCellY = cellY;
-                drawPictureBox.Invalidate();
-
-                if (currentPositionLabel.Visible != true)
-                {
-                    currentPositionLabel.Visible = true;
-                }
-
-                SetCurrentPositionLabel();
-            }
+            SetCurrentPositionLabel(e);
+            _render.HandleMouseMove(_drawingMode, new Point(_hoveredCellX, _hoveredCellY), _currentColor, _brushSize);
         }
 
         private void DrawPictureBox_MouseDown(object sender, MouseEventArgs e)
         {
-
+            _render.HandleMouseDown(_drawingMode, new Point(_hoveredCellX, _hoveredCellY), _currentColor, _brushSize);
         }
 
         private void DrawPictureBox_MouseUp(object sender, MouseEventArgs e)
         {
-
+            _render.HandleMouseUp(_drawingMode, new Point(_hoveredCellX, _hoveredCellY), _currentColor, _brushSize);
         }
 
         private void DrawPictureBox_MouseLeave(object sender, EventArgs e)
@@ -217,12 +203,12 @@ namespace Graphic_Editor
 
         private void InitializeDefaultOptions()
         {
-            _render = new Render(_widthImage, _heightImage);
-
             _heightImage = DEFULT_HEIGHT;
             _widthImage = DEFULT_WIDTH;
             widthTextBox.Text = _widthImage.ToString();
             heightTextBox.Text = _heightImage.ToString();
+
+            _render = new Render(_widthImage, _heightImage);
 
             gridCheckBox.Checked = false;
 
@@ -277,9 +263,25 @@ namespace Graphic_Editor
             currentSizeLabel.Text = $"[{_widthImage}x{_heightImage}]";
         }
 
-        private void SetCurrentPositionLabel()
+        private void SetCurrentPositionLabel(MouseEventArgs e)
         {
-            currentPositionLabel.Text = $"{_hoveredCellX}:{_hoveredCellY}";
+            short cellX = (short)(e.X / _cellWidth);
+            short cellY = (short)(e.Y / _cellHeight);
+
+            if (cellX != _hoveredCellX || cellY != _hoveredCellY ||
+                cellX >= _widthImage || cellY >= _heightImage)
+            {
+                _hoveredCellX = cellX;
+                _hoveredCellY = cellY;
+                drawPictureBox.Invalidate();
+
+                if (currentPositionLabel.Visible != true)
+                {
+                    currentPositionLabel.Visible = true;
+                }
+
+                currentPositionLabel.Text = $"{_hoveredCellX}:{_hoveredCellY}";
+            }
         }
 
         private void SetModeButton(Button setButton, ref Button currentButton)

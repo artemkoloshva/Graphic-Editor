@@ -13,11 +13,13 @@ namespace Graphic_Editor
         private ByteGraphicsBuffer _buffer;
         private ITool[] _tools;
         private ITool _currentTool;
+        private bool _isDrawing;
+
+        public ByteGraphicsBuffer Buffer { get { return this._buffer; } }
 
         public Render(int width, int height)
         {
             _buffer = new ByteGraphicsBuffer(width, height);
-
             _tools = new ITool[9]
             {
                 new PencilTool(),
@@ -30,26 +32,31 @@ namespace Graphic_Editor
                 new CurveTool(),
                 new PipetteTool()
             };
-
             _currentTool = _tools[0];
+            _isDrawing = false;
         }
 
-        public void HandleMouseDown(MouseEventArgs e, DrawingMode mode, Color color, int brushSize)
+        public void HandleMouseDown(DrawingMode mode, Point point, Color color, int brushSize)
         {
+            _isDrawing = true;
             SetTool(mode);
-            _currentTool.OnMouseDown(_buffer, color, brushSize);
+            _currentTool.OnMouseDown(_buffer, point, color, brushSize);
         }
 
-        public void HandleMouseMove(MouseEventArgs e, DrawingMode mode, Color color, int brushSize)
+        public void HandleMouseMove(DrawingMode mode, Point point, Color color, int brushSize)
         {
-            SetTool(mode);
-            _currentTool.OnMouseMove(_buffer, color, brushSize);
+            if (_isDrawing)
+            {
+                SetTool(mode);
+                _currentTool.OnMouseMove(_buffer, point, color, brushSize);
+            }
         }
 
-        public void HandleMouseUp(MouseEventArgs e, DrawingMode mode, Color color, int brushSize)
+        public void HandleMouseUp(DrawingMode mode, Point point, Color color, int brushSize)
         {
+            _isDrawing = false;
             SetTool(mode);
-            _currentTool.OnMouseUp(_buffer, color, brushSize);
+            _currentTool.OnMouseUp(_buffer, point, color, brushSize);
         }
 
         private void SetTool(DrawingMode mode)

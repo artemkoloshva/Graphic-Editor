@@ -21,12 +21,12 @@ namespace Graphic_Editor
 
         public void OnMouseDown(ByteGraphicsBuffer buffer, Point point, Color color, int brushSize)
         {
-
+            Graphics.SetPixel(buffer, point, color, brushSize);
         }
 
         public void OnMouseMove(ByteGraphicsBuffer buffer, Point point, Color color, int brushSize) 
         { 
-
+            Graphics.SetPixel(buffer, point, color, brushSize);
         }
 
         public void OnMouseUp(ByteGraphicsBuffer buffer, Point point, Color color, int brushSize)
