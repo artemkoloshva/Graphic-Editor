@@ -16,9 +16,9 @@ namespace Graphic_Editor
         /// <param name="x"></param>
         /// <param name="y"></param>
         /// <param name="color"></param>
-        public static void SetPixel(ByteGraphicsBuffer buffer, int x, int y, Color color)
+        public static void SetPixel(ByteGraphicsBuffer buffer, Point point, Color color)
         {
-            buffer.SetPixel(x, y, color);
+            buffer.SetPixel(point.X, point.Y, color);
         }
 
         /// <summary>
@@ -27,9 +27,9 @@ namespace Graphic_Editor
         /// <param name="buffer"></param>
         /// <param name="x"></param>
         /// <param name="y"></param>
-        public static void DeletePixel(ByteGraphicsBuffer buffer, int x, int y)
+        public static void DeletePixel(ByteGraphicsBuffer buffer, Point point)
         {
-            buffer.SetPixel(x, y, 0, 0, 0, 0);
+            buffer.SetPixel(point.X, point.Y, 0, 0, 0, 0);
         }
 
         /// <summary>

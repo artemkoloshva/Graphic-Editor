@@ -56,8 +56,6 @@
             this.removeColorPictureBox = new System.Windows.Forms.PictureBox();
             this.colorLabel = new System.Windows.Forms.Label();
             this.gridCheckBox = new System.Windows.Forms.CheckBox();
-            this.currentZoomLabel = new System.Windows.Forms.Label();
-            this.currentLayerLabel = new System.Windows.Forms.Label();
             this.currentPositionLabel = new System.Windows.Forms.Label();
             this.currentSizeLabel = new System.Windows.Forms.Label();
             this.resizeButton = new System.Windows.Forms.Button();
@@ -289,8 +287,6 @@
             this.panelRight.Controls.Add(this.removeColorPictureBox);
             this.panelRight.Controls.Add(this.colorLabel);
             this.panelRight.Controls.Add(this.gridCheckBox);
-            this.panelRight.Controls.Add(this.currentZoomLabel);
-            this.panelRight.Controls.Add(this.currentLayerLabel);
             this.panelRight.Controls.Add(this.currentPositionLabel);
             this.panelRight.Controls.Add(this.currentSizeLabel);
             this.panelRight.Controls.Add(this.resizeButton);
@@ -456,37 +452,13 @@
             this.gridCheckBox.Text = "Grid";
             this.gridCheckBox.UseVisualStyleBackColor = true;
             // 
-            // currentZoomLabel
-            // 
-            this.currentZoomLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.currentZoomLabel.AutoSize = true;
-            this.currentZoomLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.currentZoomLabel.ForeColor = System.Drawing.Color.Gold;
-            this.currentZoomLabel.Location = new System.Drawing.Point(9, 889);
-            this.currentZoomLabel.Name = "currentZoomLabel";
-            this.currentZoomLabel.Size = new System.Drawing.Size(53, 25);
-            this.currentZoomLabel.TabIndex = 10;
-            this.currentZoomLabel.Text = "x1.0";
-            // 
-            // currentLayerLabel
-            // 
-            this.currentLayerLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.currentLayerLabel.AutoSize = true;
-            this.currentLayerLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.currentLayerLabel.ForeColor = System.Drawing.Color.Gold;
-            this.currentLayerLabel.Location = new System.Drawing.Point(9, 939);
-            this.currentLayerLabel.Name = "currentLayerLabel";
-            this.currentLayerLabel.Size = new System.Drawing.Size(43, 25);
-            this.currentLayerLabel.TabIndex = 9;
-            this.currentLayerLabel.Text = "1/1";
-            // 
             // currentPositionLabel
             // 
             this.currentPositionLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.currentPositionLabel.AutoSize = true;
             this.currentPositionLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.currentPositionLabel.ForeColor = System.Drawing.Color.Gold;
-            this.currentPositionLabel.Location = new System.Drawing.Point(15, 864);
+            this.currentPositionLabel.Location = new System.Drawing.Point(15, 902);
             this.currentPositionLabel.Name = "currentPositionLabel";
             this.currentPositionLabel.Size = new System.Drawing.Size(43, 25);
             this.currentPositionLabel.TabIndex = 8;
@@ -498,7 +470,7 @@
             this.currentSizeLabel.AutoSize = true;
             this.currentSizeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.currentSizeLabel.ForeColor = System.Drawing.Color.Gold;
-            this.currentSizeLabel.Location = new System.Drawing.Point(9, 914);
+            this.currentSizeLabel.Location = new System.Drawing.Point(9, 927);
             this.currentSizeLabel.Name = "currentSizeLabel";
             this.currentSizeLabel.Size = new System.Drawing.Size(61, 25);
             this.currentSizeLabel.TabIndex = 7;
@@ -627,8 +599,10 @@
             this.drawPictureBox.TabIndex = 1;
             this.drawPictureBox.TabStop = false;
             this.drawPictureBox.Paint += new System.Windows.Forms.PaintEventHandler(this.DrawPictureBox_Paint);
+            this.drawPictureBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.DrawPictureBox_MouseDown);
             this.drawPictureBox.MouseLeave += new System.EventHandler(this.DrawPictureBox_MouseLeave);
             this.drawPictureBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.DrawPictureBox_MouseMove);
+            this.drawPictureBox.MouseUp += new System.Windows.Forms.MouseEventHandler(this.DrawPictureBox_MouseUp);
             // 
             // texturePictureBox
             // 
@@ -741,7 +715,6 @@
         private System.Windows.Forms.TextBox heightTextBox;
         private System.Windows.Forms.Button resizeButton;
         private System.Windows.Forms.Label currentSizeLabel;
-        private System.Windows.Forms.Label currentZoomLabel;
         private System.Windows.Forms.Label currentPositionLabel;
         private System.Windows.Forms.Button pipetteButton;
         private System.Windows.Forms.Button circleButton;
@@ -769,7 +742,6 @@
         private System.Windows.Forms.TextBox hexTextBox;
         private System.Windows.Forms.Label hexLabel;
         private System.Windows.Forms.PictureBox drawPictureBox;
-        private System.Windows.Forms.Label currentLayerLabel;
     }
 }
 

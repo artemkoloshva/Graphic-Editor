@@ -12,7 +12,7 @@ namespace Graphic_Editor
 {
     public partial class MainForm : Form
     {
-        private const ushort MAX_SIZE_IMAGE = 512;
+        private const ushort MAX_SIZE_IMAGE = 513;
         private const ushort DEFULT_HEIGHT = 32;
         private const ushort DEFULT_WIDTH = 32;
         private const byte DEFAULT_COLOR_R = 0;
@@ -24,10 +24,11 @@ namespace Graphic_Editor
 
         private Color _currentColor;
         private DrawingMode _drawingMode = DrawingMode.Pencil;
-        private PixelMode _pixelMode = PixelMode.Single;
         private Button _currentDrawingModdeButton;
         private Button _currentPixelModdeButton;
+        private Render _render;
 
+        private byte _brushSize = 1;
         private ushort _heightImage;
         private ushort _widthImage;
         private short _hoveredCellX = -1;
@@ -95,6 +96,16 @@ namespace Graphic_Editor
             }
         }
 
+        private void DrawPictureBox_MouseDown(object sender, MouseEventArgs e)
+        {
+
+        }
+
+        private void DrawPictureBox_MouseUp(object sender, MouseEventArgs e)
+        {
+
+        }
+
         private void DrawPictureBox_MouseLeave(object sender, EventArgs e)
         {
             _hoveredCellX = -1;
@@ -128,25 +139,25 @@ namespace Graphic_Editor
 
         private void SingleModeButton_Click(object sender, EventArgs e)
         {
-            _pixelMode = PixelMode.Single;
+            _brushSize = 1;
             SetModeButton(singleModeButton, ref _currentPixelModdeButton);
         }
 
         private void DoubleModeButton_Click(object sender, EventArgs e)
         {
-            _pixelMode = PixelMode.Double;
+            _brushSize = 2;
             SetModeButton(doubleModeButton, ref _currentPixelModdeButton);
         }
 
         private void TripleModeButton_Click(object sender, EventArgs e)
         {
-            _pixelMode = PixelMode.Triple;
+            _brushSize = 3;
             SetModeButton(tripleModeButton, ref _currentPixelModdeButton);
         }
 
         private void QuadrupleModeButton_Click(object sender, EventArgs e)
         {
-            _pixelMode = PixelMode.Quadruple;
+            _brushSize = 4;
             SetModeButton(quadrupleModeButton, ref _currentPixelModdeButton);
         }
 
@@ -206,6 +217,8 @@ namespace Graphic_Editor
 
         private void InitializeDefaultOptions()
         {
+            _render = new Render(_widthImage, _heightImage);
+
             _heightImage = DEFULT_HEIGHT;
             _widthImage = DEFULT_WIDTH;
             widthTextBox.Text = _widthImage.ToString();
