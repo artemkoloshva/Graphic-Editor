@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using static System.Windows.Forms.AxHost;
@@ -281,7 +282,7 @@ namespace Graphic_Editor
         /// <param name="pattern"></param>
         public static void FillPattern(ByteGraphicsBuffer buffer, Point point, Color[,] pattern)
         {
-            Color targetColor = buffer.GetPixel(x, y);
+            Color targetColor = buffer.GetPixel(point.X, point.Y);
 
             var stack = new Stack<Point>();
             stack.Push(point);
