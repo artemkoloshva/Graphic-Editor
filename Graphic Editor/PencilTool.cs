@@ -21,7 +21,7 @@ namespace Graphic_Editor
 
         public void OnMouseDown(MouseEventArgs e, ByteGraphicsBuffer buffer, Color color, int brushSize)
         {
-            
+            Graphics.SetPixel(buffer, e.Location, color, brushSize);
         }
 
         public void OnMouseMove(MouseEventArgs e, ByteGraphicsBuffer buffer, Color color, int brushSize) 

@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Windows.Forms.AxHost;
 
 namespace Graphic_Editor
 {
@@ -16,9 +17,20 @@ namespace Graphic_Editor
         /// <param name="x"></param>
         /// <param name="y"></param>
         /// <param name="color"></param>
-        public static void SetPixel(ByteGraphicsBuffer buffer, Point point, Color color)
+        public static void SetPixel(ByteGraphicsBuffer buffer, Point point, Color color, int brushSize)
         {
-            buffer.SetPixel(point.X, point.Y, color);
+            int minX = Math.Max(0, point.X - brushSize / 2);
+            int maxX = Math.Min(buffer.Width - 1, point.X + brushSize / 2);
+            int minY = Math.Max(0, point.Y - brushSize / 2);
+            int maxY = Math.Min(buffer.Height - 1, point.Y + brushSize / 2);
+
+            for (int x = minX; x <= maxX; x++)
+            {
+                for (int y = minY; y <= maxY; y++)
+                {
+                    buffer.SetPixel(x, y, color);
+                }
+            }
         }
 
         /// <summary>
@@ -27,9 +39,20 @@ namespace Graphic_Editor
         /// <param name="buffer"></param>
         /// <param name="x"></param>
         /// <param name="y"></param>
-        public static void DeletePixel(ByteGraphicsBuffer buffer, Point point)
+        public static void DeletePixel(ByteGraphicsBuffer buffer, Point point, int brushSize)
         {
-            buffer.SetPixel(point.X, point.Y, 0, 0, 0, 0);
+            int minX = Math.Max(0, point.X - brushSize / 2);
+            int maxX = Math.Min(buffer.Width - 1, point.X + brushSize / 2);
+            int minY = Math.Max(0, point.Y - brushSize / 2);
+            int maxY = Math.Min(buffer.Height - 1, point.Y + brushSize / 2);
+
+            for (int x = minX; x <= maxX; x++)
+            {
+                for (int y = minY; y <= maxY; y++)
+                {
+                    buffer.SetPixel(x, y, 0, 0, 0, 0);
+                }
+            }
         }
 
         /// <summary>
@@ -41,9 +64,9 @@ namespace Graphic_Editor
         /// <param name="x1"></param>
         /// <param name="y1"></param>
         /// <param name="color"></param>
-        public static void DrawLine(ByteGraphicsBuffer buffer, int x0, int y0, int x1, int y1, Color color)
+        public static void DrawLine(ByteGraphicsBuffer buffer, Point pointStart, Point pointEnd, Color color, int brushSize)
         {
-            DrawLineBresenham(buffer, x0, y0, x1, y1, color);
+            DrawLineBresenham(buffer, pointStart, pointEnd, color, brushSize);
         }
 
         /// <summary>
@@ -55,21 +78,21 @@ namespace Graphic_Editor
         /// <param name="x1"></param>
         /// <param name="y1"></param>
         /// <param name="color"></param>
-        public static void DrawLineBresenham(ByteGraphicsBuffer buffer, int x0, int y0, int x1, int y1, Color color)
+        public static void DrawLineBresenham(ByteGraphicsBuffer buffer, Point pointStart, Point pointEnd, Color color, int brushSize)
         {
-            int dx = Math.Abs(x1 - x0);
-            int dy = Math.Abs(y1 - y0);
+            int dx = Math.Abs(pointEnd.X - pointStart.X);
+            int dy = Math.Abs(pointEnd.Y - pointStart.Y);
 
-            int sx = (x0 < x1) ? 1 : -1;
-            int sy = (y0 < y1) ? 1 : -1;
+            int sx = (pointStart.X < pointEnd.X) ? 1 : -1;
+            int sy = (pointStart.Y < pointEnd.Y) ? 1 : -1;
 
             int err = dx - dy;
 
             while (true)
             {
-                buffer.SetPixel(x0, y0, color);
+                SetPixel(buffer, pointStart, color, brushSize);
 
-                if (x0 == x1 && y0 == y1)
+                if (pointStart.X == pointEnd.X && pointStart.Y == pointEnd.Y)
                     break;
 
                 int e2 = 2 * err;
@@ -77,13 +100,13 @@ namespace Graphic_Editor
                 if (e2 > -dy)
                 {
                     err -= dy;
-                    x0 += sx;
+                    pointStart.X += sx;
                 }
 
                 if (e2 < dx)
                 {
                     err += dx;
-                    y0 += sy;
+                    pointStart.Y += sy;
                 }
             }
         }
@@ -97,28 +120,28 @@ namespace Graphic_Editor
         /// <param name="x1"></param>
         /// <param name="y1"></param>
         /// <param name="color"></param>
-        public static void DrawLineDDASmooth(ByteGraphicsBuffer buffer, int x0, int y0, int x1, int y1, Color color)
+        public static void DrawLineDDASmooth(ByteGraphicsBuffer buffer, Point pointStart, Point pointEnd, Color color, int brushSize)
         {
-            int dx = x1 - x0;
-            int dy = y1 - y0;
+            int dx = pointEnd.X - pointStart.X;
+            int dy = pointEnd.Y - pointStart.Y;
 
             int steps = Math.Max(Math.Abs(dx), Math.Abs(dy));
 
             if (steps == 0)
             {
-                buffer.SetPixel(x0, y0, color);
+                buffer.SetPixel(pointStart.X, pointStart.Y, color);
                 return;
             }
 
             double xIncrement = (double)dx / steps;
             double yIncrement = (double)dy / steps;
 
-            double x = x0 + 0.5;
-            double y = y0 + 0.5;
+            double x = pointStart.X + 0.5;
+            double y = pointStart.Y + 0.5;
 
             for (int i = 0; i <= steps; i++)
             {
-                buffer.SetPixel((int)x, (int)y, color);
+                SetPixel(buffer, new Point((int)x, (int)y), color, brushSize);
                 x += xIncrement;
                 y += yIncrement;
             }
@@ -127,23 +150,23 @@ namespace Graphic_Editor
         /// <summary>
         /// Отрисовывает прямоугольник по двум крайним точкам
         /// </summary>
-        public static void DrawRectangle(ByteGraphicsBuffer buffer, int x0, int y0, int x1, int y1, Color color)
+        public static void DrawRectangle(ByteGraphicsBuffer buffer, Point pointStart, Point pointEnd, Color color, int brushSize)
         {
-            int left = Math.Min(x0, x1);
-            int right = Math.Max(x0, x1);
-            int top = Math.Min(y0, y1);
-            int bottom = Math.Max(y0, y1);
+            int left = Math.Min(pointStart.X, pointEnd.X);
+            int right = Math.Max(pointStart.X, pointEnd.X);
+            int top = Math.Min(pointStart.Y, pointEnd.Y);
+            int bottom = Math.Max(pointStart.Y, pointEnd.Y);
 
             for (int x = left; x <= right; x++)
             {
-                buffer.SetPixel(x, top, color);    
-                buffer.SetPixel(x, bottom, color); 
+                SetPixel(buffer, new Point(x, top), color, brushSize);
+                SetPixel(buffer, new Point(x, bottom), color, brushSize);
             }
 
             for (int y = top + 1; y < bottom; y++)
             {
-                buffer.SetPixel(left, y, color); 
-                buffer.SetPixel(right, y, color);
+                SetPixel(buffer, new Point(left, y), color, brushSize);
+                SetPixel(buffer, new Point(right, y), color, brushSize);
             }
         }
 
@@ -156,12 +179,12 @@ namespace Graphic_Editor
         /// <param name="x1"></param>
         /// <param name="y1"></param>
         /// <param name="color"></param>
-        public static void DrawCircle(ByteGraphicsBuffer buffer, int x, int y, int x1, int y1, Color color)
+        public static void DrawCircle(ByteGraphicsBuffer buffer, Point pointStart, Point pointEnd, Color color, int brushSize)
         {
-            int centerX = (x + x1) / 2;
-            int centerY = (y + y1) / 2;
-            int width = Math.Abs(x1 - x);
-            int height = Math.Abs(y1 - y);
+            int centerX = (pointStart.X + pointEnd.X) / 2;
+            int centerY = (pointStart.Y + pointEnd.Y) / 2;
+            int width = Math.Abs(pointEnd.X - pointStart.X);
+            int height = Math.Abs(pointEnd.Y - pointStart.Y);
             int radius = Math.Min(width, height) / 2;
 
             int x0 = 0;
@@ -171,10 +194,10 @@ namespace Graphic_Editor
 
             while (y0 >= 0)
             {
-                buffer.SetPixel(centerX + x0, centerY + y0, color);
-                buffer.SetPixel(centerX + x0, centerY - y0, color);
-                buffer.SetPixel(centerX - x0, centerY + y0, color);
-                buffer.SetPixel(centerX - x0, centerY - y0, color);
+                SetPixel(buffer, new Point(centerX + x0, centerY + y0), color, brushSize);
+                SetPixel(buffer, new Point(centerX + x0, centerY - y0), color, brushSize);
+                SetPixel(buffer, new Point(centerX - x0, centerY + y0), color, brushSize);
+                SetPixel(buffer, new Point(centerX - x0, centerY - y0), color, brushSize);
 
                 error = 2 * (delta + y0) - 1;
 
@@ -207,19 +230,19 @@ namespace Graphic_Editor
         /// <param name="x"></param>
         /// <param name="y"></param>
         /// <param name="fillColor"></param>
-        public static void ScanlineFill(ByteGraphicsBuffer buffer, int x, int y, Color fillColor)
+        public static void FillScanline(ByteGraphicsBuffer buffer, Point point, Color fillColor)
         {
-            Color targetColor = buffer.GetPixel(x, y);
+            Color targetColor = buffer.GetPixel(point.X, point.Y);
             if (targetColor.ToArgb() == fillColor.ToArgb()) return;
 
             var stack = new Stack<Point>();
-            stack.Push(new Point(x, y));
+            stack.Push(point);
 
             while (stack.Count > 0)
             {
-                Point point = stack.Pop();
-                int py = point.Y;
-                int px = point.X;
+                Point pointStack = stack.Pop();
+                int py = pointStack.Y;
+                int px = pointStack.X;
 
                 int left = px;
                 while (left >= 0 && buffer.GetPixel(left, py).ToArgb() == targetColor.ToArgb())
@@ -256,21 +279,21 @@ namespace Graphic_Editor
         /// <param name="x"></param>
         /// <param name="y"></param>
         /// <param name="pattern"></param>
-        public static void PatternFill(ByteGraphicsBuffer buffer, int x, int y, Color[,] pattern)
+        public static void FillPattern(ByteGraphicsBuffer buffer, Point point, Color[,] pattern)
         {
             Color targetColor = buffer.GetPixel(x, y);
 
             var stack = new Stack<Point>();
-            stack.Push(new Point(x, y));
+            stack.Push(point);
 
             int patternWidth = pattern.GetLength(0);
             int patternHeight = pattern.GetLength(1);
 
             while (stack.Count > 0)
             {
-                Point point = stack.Pop();
-                int px = point.X;
-                int py = point.Y;
+                Point pointStack = stack.Pop();
+                int px = pointStack.X;
+                int py = pointStack.Y;
 
                 if (px < 0 || px >= buffer.Width || py < 0 || py >= buffer.Height) continue;
                 if (buffer.GetPixel(px, py).ToArgb() != targetColor.ToArgb()) continue;
