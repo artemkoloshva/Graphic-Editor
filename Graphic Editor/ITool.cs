@@ -12,10 +12,10 @@ namespace Graphic_Editor
     {
         DrawingMode Mode { get; }
 
-        void OnMouseDown(MouseEventArgs e, ByteGraphicsBuffer buffer, Color color, int brushSize);
+        void OnMouseDown(ByteGraphicsBuffer buffer, Point point, Color color, int brushSize);
 
-        void OnMouseMove(MouseEventArgs e, ByteGraphicsBuffer buffer, Color color, int brushSize);
+        void OnMouseMove(ByteGraphicsBuffer buffer, Point point, Color color, int brushSize);
 
-        void OnMouseUp(MouseEventArgs e, ByteGraphicsBuffer buffer, Color color, int brushSize);
+        void OnMouseUp(ByteGraphicsBuffer buffer, Point point, Color color, int brushSize);
     }
 }

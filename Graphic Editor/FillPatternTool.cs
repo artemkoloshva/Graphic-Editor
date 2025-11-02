@@ -19,17 +19,17 @@ namespace Graphic_Editor
             Mode = DrawingMode.FillPattern;
         }
 
-        public void OnMouseDown(MouseEventArgs e, ByteGraphicsBuffer buffer, Color color, int brushSize)
+        public void OnMouseDown(ByteGraphicsBuffer buffer, Point point, Color color, int brushSize)
         {
 
         }
 
-        public void OnMouseMove(MouseEventArgs e, ByteGraphicsBuffer buffer, Color color, int brushSize)
+        public void OnMouseMove(ByteGraphicsBuffer buffer, Point point, Color color, int brushSize)
         {
 
         }
 
-        public void OnMouseUp(MouseEventArgs e, ByteGraphicsBuffer buffer, Color color, int brushSize)
+        public void OnMouseUp(ByteGraphicsBuffer buffer, Point point, Color color, int brushSize)
         {
 
         }
