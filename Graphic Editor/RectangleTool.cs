@@ -10,9 +10,15 @@ namespace Graphic_Editor
 {
     internal class RectangleTool : ITool
     {
-        public DrawingMode Mode { get; } = DrawingMode.Rectangle;
-
+        private DrawingMode _mode;
         private Point? _startPoint = null;
+
+        public DrawingMode Mode { get { return this._mode; } }
+
+        public RectangleTool()
+        {
+            _mode = DrawingMode.Rectangle;
+        }
 
         public void OnMouseDown(ByteGraphicsBuffer buffer, Point point, Color color, int brushSize)
         {

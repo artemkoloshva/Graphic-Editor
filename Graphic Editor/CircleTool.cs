@@ -10,9 +10,15 @@ namespace Graphic_Editor
 {
     internal class CircleTool : ITool
     {
-        public DrawingMode Mode { get; } = DrawingMode.Circle;
-
+        private DrawingMode _mode;
         private Point? _startPoint = null;
+
+        public DrawingMode Mode { get { return this._mode; } }
+
+        public CircleTool()
+        {
+            _mode = DrawingMode.Circle;
+        }
 
         public void OnMouseDown(ByteGraphicsBuffer buffer, Point point, Color color, int brushSize)
         {

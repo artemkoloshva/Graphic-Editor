@@ -15,7 +15,7 @@ namespace Graphic_Editor
 {
     public partial class MainForm : Form
     {
-        private const ushort MAX_SIZE_IMAGE = 513;
+        private const ushort MAX_SIZE_IMAGE = 256;
         private const ushort DEFULT_HEIGHT = 32;
         private const ushort DEFULT_WIDTH = 32;
         private const byte DEFAULT_COLOR_R = 0;
@@ -129,6 +129,27 @@ namespace Graphic_Editor
             SetCurrentSizeLabel();
         }
 
+        private void RecolorButton_Click(object sender, EventArgs e)
+        {
+            byte r, g, b;
+
+            if (byte.TryParse(rTextBox.Text, out r) && byte.TryParse(gTextBox.Text, out g) && byte.TryParse(bTextBox.Text, out b))
+            {
+                _currentColor = Color.FromArgb(DEFAULT_COLOR_A, r, g, b);
+            }
+            else
+            {
+                _currentColor = Color.FromArgb(DEFAULT_COLOR_A, DEFAULT_COLOR_R, DEFAULT_COLOR_G, DEFAULT_COLOR_B);
+                rTextBox.Text = DEFAULT_COLOR_R.ToString();
+                gTextBox.Text = DEFAULT_COLOR_G.ToString();
+                bTextBox.Text = DEFAULT_COLOR_B.ToString();
+
+                MessageBox.Show("Неверный ввод цвета");
+            }
+
+            currentColorPictureBox.BackColor = _currentColor;
+        }
+
         private void SingleModeButton_Click(object sender, EventArgs e)
         {
             _brushSize = 1;
@@ -183,12 +204,6 @@ namespace Graphic_Editor
             SetModeButton(lineButton, ref _currentDrawingModdeButton);
         }
 
-        private void CurveButton_Click(object sender, EventArgs e)
-        {
-            _drawingMode = DrawingMode.Curve;
-            SetModeButton(curveButton, ref _currentDrawingModdeButton);
-        }
-
         private void RectangleButton_Click(object sender, EventArgs e)
         {
             _drawingMode = DrawingMode.Rectangle;
@@ -201,12 +216,6 @@ namespace Graphic_Editor
             SetModeButton(circleButton, ref _currentDrawingModdeButton);
         }
 
-        private void PipetteButton_Click(object sender, EventArgs e)
-        {
-            _drawingMode = DrawingMode.Pipette;
-            SetModeButton(pipetteButton, ref _currentDrawingModdeButton);
-        }
-
         private void InitializeDefaultOptions()
         {
             _heightImage = DEFULT_HEIGHT;
@@ -214,14 +223,10 @@ namespace Graphic_Editor
             widthTextBox.Text = _widthImage.ToString();
             heightTextBox.Text = _heightImage.ToString();
 
-            gridCheckBox.Checked = false;
-
             _currentColor = Color.FromArgb(DEFAULT_COLOR_A, DEFAULT_COLOR_R, DEFAULT_COLOR_G, DEFAULT_COLOR_B);
             rTextBox.Text = DEFAULT_COLOR_R.ToString();
             gTextBox.Text = DEFAULT_COLOR_G.ToString();
             bTextBox.Text = DEFAULT_COLOR_B.ToString();
-            hexTextBox.Text = ColorTranslator.ToHtml(_currentColor);
-
             currentColorPictureBox.BackColor = _currentColor;
 
             _currentDrawingModdeButton = pencilButton;
@@ -284,7 +289,6 @@ namespace Graphic_Editor
             drawPictureBox.Invalidate();
             _render?.RequestRedraw();
         }
-
 
         private void SetCurrentSizeLabel()
         {

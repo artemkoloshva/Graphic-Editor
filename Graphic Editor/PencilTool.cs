@@ -12,11 +12,11 @@ namespace Graphic_Editor
     {
         private DrawingMode _mode;
 
-        public DrawingMode Mode { get; }
+        public DrawingMode Mode { get { return this._mode; } }
 
         public PencilTool() 
         { 
-            Mode = DrawingMode.Pencil;
+            _mode = DrawingMode.Pencil;
         }
 
         public void OnMouseDown(ByteGraphicsBuffer buffer, Point point, Color color, int brushSize)

@@ -48,14 +48,6 @@ namespace Graphic_Editor
             _pixelData[index + 3] = color.B;
         }
 
-        /// <summary>
-        /// Сохраняет данные пикселя в буффер
-        /// </summary>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
-        /// <param name="r"></param>
-        /// <param name="g"></param>
-        /// <param name="b"></param>
         public void SetPixel(int x, int y, byte r, byte g, byte b, byte a)
         {
             int index = (y * _width + x) * 4;
@@ -71,10 +63,6 @@ namespace Graphic_Editor
             return Color.FromArgb(_pixelData[index], _pixelData[index + 1], _pixelData[index + 2], _pixelData[index + 3]);
         }
 
-        /// <summary>
-        /// Переводит байтовый буфер в BitMap
-        /// </summary>
-        /// <returns></returns>
         public Bitmap ToBitmap()
         {
             var bitmap = new Bitmap(_width, _height, PixelFormat.Format32bppArgb);

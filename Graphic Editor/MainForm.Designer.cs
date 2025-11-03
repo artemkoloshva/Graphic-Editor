@@ -34,18 +34,15 @@
             this.tripleModeButton = new System.Windows.Forms.Button();
             this.doubleModeButton = new System.Windows.Forms.Button();
             this.singleModeButton = new System.Windows.Forms.Button();
-            this.pipetteButton = new System.Windows.Forms.Button();
             this.circleButton = new System.Windows.Forms.Button();
             this.rectangleButton = new System.Windows.Forms.Button();
-            this.curveButton = new System.Windows.Forms.Button();
             this.lineButton = new System.Windows.Forms.Button();
             this.fillPatternButton = new System.Windows.Forms.Button();
             this.fillButton = new System.Windows.Forms.Button();
             this.eraserButton = new System.Windows.Forms.Button();
             this.pencilButton = new System.Windows.Forms.Button();
             this.panelRight = new System.Windows.Forms.Panel();
-            this.hexTextBox = new System.Windows.Forms.TextBox();
-            this.hexLabel = new System.Windows.Forms.Label();
+            this.recolorButton = new System.Windows.Forms.Button();
             this.bTextBox = new System.Windows.Forms.TextBox();
             this.bLabel = new System.Windows.Forms.Label();
             this.gTextBox = new System.Windows.Forms.TextBox();
@@ -55,7 +52,6 @@
             this.currentColorPictureBox = new System.Windows.Forms.PictureBox();
             this.removeColorPictureBox = new System.Windows.Forms.PictureBox();
             this.colorLabel = new System.Windows.Forms.Label();
-            this.gridCheckBox = new System.Windows.Forms.CheckBox();
             this.currentPositionLabel = new System.Windows.Forms.Label();
             this.currentSizeLabel = new System.Windows.Forms.Label();
             this.resizeButton = new System.Windows.Forms.Button();
@@ -70,8 +66,6 @@
             this.drawPictureBox = new System.Windows.Forms.PictureBox();
             this.texturePictureBox = new System.Windows.Forms.PictureBox();
             this.namePanel = new System.Windows.Forms.Panel();
-            this.createNewPictureButton = new System.Windows.Forms.Button();
-            this.pictureNameLabel = new System.Windows.Forms.Label();
             this.ProjectNameLabel = new System.Windows.Forms.Label();
             this.panelLeft.SuspendLayout();
             this.panelRight.SuspendLayout();
@@ -90,10 +84,8 @@
             this.panelLeft.Controls.Add(this.tripleModeButton);
             this.panelLeft.Controls.Add(this.doubleModeButton);
             this.panelLeft.Controls.Add(this.singleModeButton);
-            this.panelLeft.Controls.Add(this.pipetteButton);
             this.panelLeft.Controls.Add(this.circleButton);
             this.panelLeft.Controls.Add(this.rectangleButton);
-            this.panelLeft.Controls.Add(this.curveButton);
             this.panelLeft.Controls.Add(this.lineButton);
             this.panelLeft.Controls.Add(this.fillPatternButton);
             this.panelLeft.Controls.Add(this.fillButton);
@@ -155,25 +147,12 @@
             this.singleModeButton.UseVisualStyleBackColor = true;
             this.singleModeButton.Click += new System.EventHandler(this.SingleModeButton_Click);
             // 
-            // pipetteButton
-            // 
-            this.pipetteButton.BackgroundImage = global::Graphic_Editor.Properties.Resources.copyСolor;
-            this.pipetteButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pipetteButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.pipetteButton.Location = new System.Drawing.Point(132, 772);
-            this.pipetteButton.Margin = new System.Windows.Forms.Padding(10);
-            this.pipetteButton.Name = "pipetteButton";
-            this.pipetteButton.Size = new System.Drawing.Size(125, 125);
-            this.pipetteButton.TabIndex = 8;
-            this.pipetteButton.UseVisualStyleBackColor = true;
-            this.pipetteButton.Click += new System.EventHandler(this.PipetteButton_Click);
-            // 
             // circleButton
             // 
             this.circleButton.BackgroundImage = global::Graphic_Editor.Properties.Resources.circle;
             this.circleButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.circleButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.circleButton.Location = new System.Drawing.Point(206, 627);
+            this.circleButton.Location = new System.Drawing.Point(206, 482);
             this.circleButton.Margin = new System.Windows.Forms.Padding(10);
             this.circleButton.Name = "circleButton";
             this.circleButton.Size = new System.Drawing.Size(125, 125);
@@ -186,7 +165,7 @@
             this.rectangleButton.BackgroundImage = global::Graphic_Editor.Properties.Resources.rectangle;
             this.rectangleButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.rectangleButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rectangleButton.Location = new System.Drawing.Point(61, 627);
+            this.rectangleButton.Location = new System.Drawing.Point(61, 482);
             this.rectangleButton.Margin = new System.Windows.Forms.Padding(10);
             this.rectangleButton.Name = "rectangleButton";
             this.rectangleButton.Size = new System.Drawing.Size(125, 125);
@@ -194,25 +173,12 @@
             this.rectangleButton.UseVisualStyleBackColor = true;
             this.rectangleButton.Click += new System.EventHandler(this.RectangleButton_Click);
             // 
-            // curveButton
-            // 
-            this.curveButton.BackgroundImage = global::Graphic_Editor.Properties.Resources.curve1;
-            this.curveButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.curveButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.curveButton.Location = new System.Drawing.Point(206, 482);
-            this.curveButton.Margin = new System.Windows.Forms.Padding(10);
-            this.curveButton.Name = "curveButton";
-            this.curveButton.Size = new System.Drawing.Size(125, 125);
-            this.curveButton.TabIndex = 5;
-            this.curveButton.UseVisualStyleBackColor = true;
-            this.curveButton.Click += new System.EventHandler(this.CurveButton_Click);
-            // 
             // lineButton
             // 
             this.lineButton.BackgroundImage = global::Graphic_Editor.Properties.Resources.line;
             this.lineButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.lineButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lineButton.Location = new System.Drawing.Point(61, 482);
+            this.lineButton.Location = new System.Drawing.Point(206, 192);
             this.lineButton.Margin = new System.Windows.Forms.Padding(10);
             this.lineButton.Name = "lineButton";
             this.lineButton.Size = new System.Drawing.Size(125, 125);
@@ -251,7 +217,7 @@
             this.eraserButton.BackgroundImage = global::Graphic_Editor.Properties.Resources.eraser;
             this.eraserButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.eraserButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.eraserButton.Location = new System.Drawing.Point(206, 192);
+            this.eraserButton.Location = new System.Drawing.Point(134, 627);
             this.eraserButton.Margin = new System.Windows.Forms.Padding(10);
             this.eraserButton.Name = "eraserButton";
             this.eraserButton.Size = new System.Drawing.Size(125, 125);
@@ -275,8 +241,7 @@
             // panelRight
             // 
             this.panelRight.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(29)))), ((int)(((byte)(29)))));
-            this.panelRight.Controls.Add(this.hexTextBox);
-            this.panelRight.Controls.Add(this.hexLabel);
+            this.panelRight.Controls.Add(this.recolorButton);
             this.panelRight.Controls.Add(this.bTextBox);
             this.panelRight.Controls.Add(this.bLabel);
             this.panelRight.Controls.Add(this.gTextBox);
@@ -286,7 +251,6 @@
             this.panelRight.Controls.Add(this.currentColorPictureBox);
             this.panelRight.Controls.Add(this.removeColorPictureBox);
             this.panelRight.Controls.Add(this.colorLabel);
-            this.panelRight.Controls.Add(this.gridCheckBox);
             this.panelRight.Controls.Add(this.currentPositionLabel);
             this.panelRight.Controls.Add(this.currentSizeLabel);
             this.panelRight.Controls.Add(this.resizeButton);
@@ -305,31 +269,20 @@
             this.panelRight.Size = new System.Drawing.Size(337, 980);
             this.panelRight.TabIndex = 2;
             // 
-            // hexTextBox
+            // recolorButton
             // 
-            this.hexTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.hexTextBox.BackColor = System.Drawing.Color.Black;
-            this.hexTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.hexTextBox.ForeColor = System.Drawing.Color.White;
-            this.hexTextBox.Location = new System.Drawing.Point(87, 595);
-            this.hexTextBox.Margin = new System.Windows.Forms.Padding(10);
-            this.hexTextBox.Name = "hexTextBox";
-            this.hexTextBox.Size = new System.Drawing.Size(151, 35);
-            this.hexTextBox.TabIndex = 22;
-            this.hexTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // hexLabel
-            // 
-            this.hexLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.hexLabel.AutoSize = true;
-            this.hexLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.hexLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
-            this.hexLabel.Location = new System.Drawing.Point(15, 601);
-            this.hexLabel.Margin = new System.Windows.Forms.Padding(10);
-            this.hexLabel.Name = "hexLabel";
-            this.hexLabel.Size = new System.Drawing.Size(63, 25);
-            this.hexLabel.TabIndex = 21;
-            this.hexLabel.Text = "HEX:";
+            this.recolorButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.recolorButton.BackColor = System.Drawing.Color.Gold;
+            this.recolorButton.FlatAppearance.BorderSize = 0;
+            this.recolorButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.recolorButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.recolorButton.Location = new System.Drawing.Point(105, 550);
+            this.recolorButton.Name = "recolorButton";
+            this.recolorButton.Size = new System.Drawing.Size(156, 38);
+            this.recolorButton.TabIndex = 21;
+            this.recolorButton.Text = "Recolor";
+            this.recolorButton.UseVisualStyleBackColor = false;
+            this.recolorButton.Click += new System.EventHandler(this.RecolorButton_Click);
             // 
             // bTextBox
             // 
@@ -337,7 +290,7 @@
             this.bTextBox.BackColor = System.Drawing.Color.Black;
             this.bTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.bTextBox.ForeColor = System.Drawing.Color.White;
-            this.bTextBox.Location = new System.Drawing.Point(54, 528);
+            this.bTextBox.Location = new System.Drawing.Point(54, 489);
             this.bTextBox.Margin = new System.Windows.Forms.Padding(10);
             this.bTextBox.Name = "bTextBox";
             this.bTextBox.Size = new System.Drawing.Size(71, 35);
@@ -350,7 +303,7 @@
             this.bLabel.AutoSize = true;
             this.bLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.bLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
-            this.bLabel.Location = new System.Drawing.Point(15, 534);
+            this.bLabel.Location = new System.Drawing.Point(15, 495);
             this.bLabel.Margin = new System.Windows.Forms.Padding(10);
             this.bLabel.Name = "bLabel";
             this.bLabel.Size = new System.Drawing.Size(33, 25);
@@ -363,7 +316,7 @@
             this.gTextBox.BackColor = System.Drawing.Color.Black;
             this.gTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.gTextBox.ForeColor = System.Drawing.Color.White;
-            this.gTextBox.Location = new System.Drawing.Point(54, 473);
+            this.gTextBox.Location = new System.Drawing.Point(54, 434);
             this.gTextBox.Margin = new System.Windows.Forms.Padding(10);
             this.gTextBox.Name = "gTextBox";
             this.gTextBox.Size = new System.Drawing.Size(71, 35);
@@ -376,7 +329,7 @@
             this.gLabel.AutoSize = true;
             this.gLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.gLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
-            this.gLabel.Location = new System.Drawing.Point(15, 479);
+            this.gLabel.Location = new System.Drawing.Point(15, 440);
             this.gLabel.Margin = new System.Windows.Forms.Padding(10);
             this.gLabel.Name = "gLabel";
             this.gLabel.Size = new System.Drawing.Size(35, 25);
@@ -389,7 +342,7 @@
             this.rTextBox.BackColor = System.Drawing.Color.Black;
             this.rTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.rTextBox.ForeColor = System.Drawing.Color.White;
-            this.rTextBox.Location = new System.Drawing.Point(54, 418);
+            this.rTextBox.Location = new System.Drawing.Point(54, 379);
             this.rTextBox.Margin = new System.Windows.Forms.Padding(10);
             this.rTextBox.Name = "rTextBox";
             this.rTextBox.Size = new System.Drawing.Size(71, 35);
@@ -402,7 +355,7 @@
             this.rLabel.AutoSize = true;
             this.rLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.rLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
-            this.rLabel.Location = new System.Drawing.Point(15, 424);
+            this.rLabel.Location = new System.Drawing.Point(15, 385);
             this.rLabel.Margin = new System.Windows.Forms.Padding(10);
             this.rLabel.Name = "rLabel";
             this.rLabel.Size = new System.Drawing.Size(33, 25);
@@ -412,7 +365,7 @@
             // currentColorPictureBox
             // 
             this.currentColorPictureBox.BackColor = System.Drawing.Color.Black;
-            this.currentColorPictureBox.Location = new System.Drawing.Point(72, 664);
+            this.currentColorPictureBox.Location = new System.Drawing.Point(72, 627);
             this.currentColorPictureBox.Name = "currentColorPictureBox";
             this.currentColorPictureBox.Size = new System.Drawing.Size(150, 150);
             this.currentColorPictureBox.TabIndex = 14;
@@ -422,7 +375,7 @@
             // 
             this.removeColorPictureBox.BackColor = System.Drawing.Color.Black;
             this.removeColorPictureBox.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("removeColorPictureBox.BackgroundImage")));
-            this.removeColorPictureBox.Location = new System.Drawing.Point(136, 724);
+            this.removeColorPictureBox.Location = new System.Drawing.Point(136, 687);
             this.removeColorPictureBox.Name = "removeColorPictureBox";
             this.removeColorPictureBox.Size = new System.Drawing.Size(150, 150);
             this.removeColorPictureBox.TabIndex = 13;
@@ -434,23 +387,11 @@
             this.colorLabel.AutoSize = true;
             this.colorLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.colorLabel.ForeColor = System.Drawing.Color.Gold;
-            this.colorLabel.Location = new System.Drawing.Point(134, 376);
+            this.colorLabel.Location = new System.Drawing.Point(134, 337);
             this.colorLabel.Name = "colorLabel";
             this.colorLabel.Size = new System.Drawing.Size(88, 25);
             this.colorLabel.TabIndex = 13;
             this.colorLabel.Text = "COLOR";
-            // 
-            // gridCheckBox
-            // 
-            this.gridCheckBox.AutoSize = true;
-            this.gridCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.gridCheckBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
-            this.gridCheckBox.Location = new System.Drawing.Point(20, 328);
-            this.gridCheckBox.Name = "gridCheckBox";
-            this.gridCheckBox.Size = new System.Drawing.Size(78, 29);
-            this.gridCheckBox.TabIndex = 12;
-            this.gridCheckBox.Text = "Grid";
-            this.gridCheckBox.UseVisualStyleBackColor = true;
             // 
             // currentPositionLabel
             // 
@@ -622,40 +563,11 @@
             this.namePanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.namePanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
-            this.namePanel.Controls.Add(this.createNewPictureButton);
-            this.namePanel.Controls.Add(this.pictureNameLabel);
             this.namePanel.Controls.Add(this.ProjectNameLabel);
             this.namePanel.Location = new System.Drawing.Point(0, 0);
             this.namePanel.Name = "namePanel";
             this.namePanel.Size = new System.Drawing.Size(1745, 76);
             this.namePanel.TabIndex = 4;
-            // 
-            // createNewPictureButton
-            // 
-            this.createNewPictureButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.createNewPictureButton.BackColor = System.Drawing.Color.Gold;
-            this.createNewPictureButton.FlatAppearance.BorderSize = 0;
-            this.createNewPictureButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.createNewPictureButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.createNewPictureButton.Location = new System.Drawing.Point(1504, 12);
-            this.createNewPictureButton.Name = "createNewPictureButton";
-            this.createNewPictureButton.Size = new System.Drawing.Size(189, 54);
-            this.createNewPictureButton.TabIndex = 2;
-            this.createNewPictureButton.Text = "Create Sprite";
-            this.createNewPictureButton.UseVisualStyleBackColor = false;
-            // 
-            // pictureNameLabel
-            // 
-            this.pictureNameLabel.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.pictureNameLabel.AutoSize = true;
-            this.pictureNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.pictureNameLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(104)))), ((int)(((byte)(104)))), ((int)(((byte)(104)))));
-            this.pictureNameLabel.Location = new System.Drawing.Point(779, 20);
-            this.pictureNameLabel.Name = "pictureNameLabel";
-            this.pictureNameLabel.Size = new System.Drawing.Size(189, 37);
-            this.pictureNameLabel.TabIndex = 1;
-            this.pictureNameLabel.Text = "New Picture";
-            this.pictureNameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // ProjectNameLabel
             // 
@@ -703,8 +615,6 @@
         private System.Windows.Forms.PictureBox texturePictureBox;
         private System.Windows.Forms.Panel namePanel;
         private System.Windows.Forms.Label ProjectNameLabel;
-        private System.Windows.Forms.Label pictureNameLabel;
-        private System.Windows.Forms.Button createNewPictureButton;
         private System.Windows.Forms.Label sizeLabel;
         private System.Windows.Forms.Label heightLabel;
         private System.Windows.Forms.Label widthLabel;
@@ -715,10 +625,8 @@
         private System.Windows.Forms.Button resizeButton;
         private System.Windows.Forms.Label currentSizeLabel;
         private System.Windows.Forms.Label currentPositionLabel;
-        private System.Windows.Forms.Button pipetteButton;
         private System.Windows.Forms.Button circleButton;
         private System.Windows.Forms.Button rectangleButton;
-        private System.Windows.Forms.Button curveButton;
         private System.Windows.Forms.Button lineButton;
         private System.Windows.Forms.Button fillPatternButton;
         private System.Windows.Forms.Button fillButton;
@@ -729,7 +637,6 @@
         private System.Windows.Forms.Button singleModeButton;
         private System.Windows.Forms.PictureBox removeColorPictureBox;
         private System.Windows.Forms.PictureBox currentColorPictureBox;
-        private System.Windows.Forms.CheckBox gridCheckBox;
         private System.Windows.Forms.Button pencilButton;
         private System.Windows.Forms.Label colorLabel;
         private System.Windows.Forms.TextBox bTextBox;
@@ -738,9 +645,8 @@
         private System.Windows.Forms.Label gLabel;
         private System.Windows.Forms.TextBox rTextBox;
         private System.Windows.Forms.Label rLabel;
-        private System.Windows.Forms.TextBox hexTextBox;
-        private System.Windows.Forms.Label hexLabel;
         private System.Windows.Forms.PictureBox drawPictureBox;
+        private System.Windows.Forms.Button recolorButton;
     }
 }
 

@@ -10,9 +10,15 @@ namespace Graphic_Editor
 {
     internal class LineTool : ITool
     {
-        public DrawingMode Mode { get; } = DrawingMode.Line;
-
+        private DrawingMode _mode;
         private Point? _startPoint = null;
+
+        public DrawingMode Mode { get { return this._mode; } }
+
+        public LineTool()
+        {
+            _mode = DrawingMode.Line;
+        }
 
         public void OnMouseDown(ByteGraphicsBuffer buffer, Point point, Color color, int brushSize)
         {
@@ -27,7 +33,7 @@ namespace Graphic_Editor
 
             GraphicsRender.CopyBuffer(buffer, tempBuffer);
 
-            GraphicsRender.DrawLineDDASmooth(tempBuffer, _startPoint.Value, point, color, brushSize);
+            GraphicsRender.DrawLine(tempBuffer, _startPoint.Value, point, color, brushSize);
 
             buffer.RenderPreview(tempBuffer.ToBitmap());
         }
@@ -37,7 +43,7 @@ namespace Graphic_Editor
         {
             if (!_startPoint.HasValue) return;
 
-            GraphicsRender.DrawLineDDASmooth(buffer, _startPoint.Value, point, color, brushSize);
+            GraphicsRender.DrawLine(buffer, _startPoint.Value, point, color, brushSize);
 
             buffer.RenderPreview(null);
             _startPoint = null;

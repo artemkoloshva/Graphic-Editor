@@ -11,13 +11,6 @@ namespace Graphic_Editor
 {
     internal static class GraphicsRender
     {
-        /// <summary>
-        /// Изменяет цвет пикселя на кординатах (x, y)
-        /// </summary>
-        /// <param name="buffer"></param>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
-        /// <param name="color"></param>
         public static void SetPixel(ByteGraphicsBuffer buffer, Point point, Color color, int brushSize)
         {
             int half = brushSize / 2;
@@ -35,12 +28,6 @@ namespace Graphic_Editor
             }
         }
 
-        /// <summary>
-        /// Удаление пикселя по кординатам
-        /// </summary>
-        /// <param name="buffer"></param>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
         public static void DeletePixel(ByteGraphicsBuffer buffer, Point point, int brushSize)
         {
             int half = brushSize / 2;
@@ -58,29 +45,11 @@ namespace Graphic_Editor
             }
         }
 
-        /// <summary>
-        /// Отрисовывает прямую линию по дефолту
-        /// </summary>
-        /// <param name="buffer"></param>
-        /// <param name="x0"></param>
-        /// <param name="y0"></param>
-        /// <param name="x1"></param>
-        /// <param name="y1"></param>
-        /// <param name="color"></param>
         public static void DrawLine(ByteGraphicsBuffer buffer, Point pointStart, Point pointEnd, Color color, int brushSize)
         {
             DrawLineBresenham(buffer, pointStart, pointEnd, color, brushSize);
         }
 
-        /// <summary>
-        /// Отрисовывает прямую линию по алгоритму Брезенхема
-        /// </summary>
-        /// <param name="buffer"></param>
-        /// <param name="x0"></param>
-        /// <param name="y0"></param>
-        /// <param name="x1"></param>
-        /// <param name="y1"></param>
-        /// <param name="color"></param>
         public static void DrawLineBresenham(ByteGraphicsBuffer buffer, Point pointStart, Point pointEnd, Color color, int brushSize)
         {
             int dx = Math.Abs(pointEnd.X - pointStart.X);
@@ -114,15 +83,6 @@ namespace Graphic_Editor
             }
         }
 
-        /// <summary>
-        /// Отрисовывает прямую линию по естественному алгоритму
-        /// </summary>
-        /// <param name="buffer"></param>
-        /// <param name="x0"></param>
-        /// <param name="y0"></param>
-        /// <param name="x1"></param>
-        /// <param name="y1"></param>
-        /// <param name="color"></param>
         public static void DrawLineDDASmooth(ByteGraphicsBuffer buffer, Point pointStart, Point pointEnd, Color color, int brushSize)
         {
             int dx = pointEnd.X - pointStart.X;
@@ -150,9 +110,6 @@ namespace Graphic_Editor
             }
         }
 
-        /// <summary>
-        /// Отрисовывает прямоугольник по двум крайним точкам
-        /// </summary>
         public static void DrawRectangle(ByteGraphicsBuffer buffer, Point pointStart, Point pointEnd, Color color, int brushSize)
         {
             int left = Math.Min(pointStart.X, pointEnd.X);
@@ -173,15 +130,6 @@ namespace Graphic_Editor
             }
         }
 
-        /// <summary>
-        /// Отрисовывает окружность по алгоритму Брезенхема
-        /// </summary>
-        /// <param name="buffer"></param>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
-        /// <param name="x1"></param>
-        /// <param name="y1"></param>
-        /// <param name="color"></param>
         public static void DrawCircle(ByteGraphicsBuffer buffer, Point pointStart, Point pointEnd, Color color, int brushSize)
         {
             int centerX = (pointStart.X + pointEnd.X) / 2;
@@ -226,13 +174,6 @@ namespace Graphic_Editor
             }
         }
 
-        /// <summary>
-        /// Закрашивает отбласть построчным алгоритмом
-        /// </summary>
-        /// <param name="buffer"></param>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
-        /// <param name="fillColor"></param>
         public static void FillScanline(ByteGraphicsBuffer buffer, Point point, Color fillColor)
         {
             Color targetColor = buffer.GetPixel(point.X, point.Y);
@@ -275,13 +216,6 @@ namespace Graphic_Editor
             }
         }
 
-        /// <summary>
-        /// Закрашивает область определенным узором
-        /// </summary>
-        /// <param name="buffer"></param>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
-        /// <param name="pattern"></param>
         public static void FillPattern(ByteGraphicsBuffer buffer, Point point, Color[,] pattern)
         {
             Color targetColor = buffer.GetPixel(point.X, point.Y);

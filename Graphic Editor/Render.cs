@@ -25,7 +25,7 @@ namespace Graphic_Editor
         {
             _buffer = new ByteGraphicsBuffer(width, height);
             _previewBuffer = new ByteGraphicsBuffer(width, height);
-            _tools = new ITool[9]
+            _tools = new ITool[7]
             {
                 new PencilTool(),
                 new EraserTool(),
@@ -33,9 +33,7 @@ namespace Graphic_Editor
                 new FillPatternTool(),
                 new CircleTool(),
                 new RectangleTool(),
-                new LineTool(),
-                new CurveTool(),
-                new PipetteTool()
+                new LineTool()
             };
             _currentTool = _tools[0];
             _isDrawing = false;

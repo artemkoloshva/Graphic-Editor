@@ -13,9 +13,7 @@ namespace Graphic_Editor
         Fill,
         FillPattern,
         Line,
-        Curve,
         Rectangle,
-        Circle,
-        Pipette
+        Circle
     };
 }
