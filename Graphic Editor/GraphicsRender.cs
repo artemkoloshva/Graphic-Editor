@@ -110,6 +110,46 @@ namespace Graphic_Editor
             }
         }
 
+        public static void DrawLineWu(ByteGraphicsBuffer buffer, Point pointStart, Point pointEnd, Color color, int brushSize)
+        {
+            int x0 = pointStart.X, y0 = pointStart.Y;
+            int x1 = pointEnd.X, y1 = pointEnd.Y;
+
+            bool steep = Math.Abs(y1 - y0) > Math.Abs(x1 - x0);
+
+            if (steep)
+            {
+                (x0, y0) = (y0, x0);
+                (x1, y1) = (y1, x1);
+            }
+
+            if (x0 > x1)
+            {
+                (x0, x1) = (x1, x0);
+                (y0, y1) = (y1, y0);
+            }
+
+            float dx = x1 - x0;
+            float dy = y1 - y0;
+            float gradient = dx == 0 ? 1 : dy / dx;
+
+            float y = y0;
+            for (int x = x0; x <= x1; x++)
+            {
+                if (steep)
+                {
+                    DrawWuPixel(buffer, new Point((int)y, x), color, 1 - (y - (int)y), brushSize);
+                    DrawWuPixel(buffer, new Point((int)y + 1, x), color, y - (int)y, brushSize);
+                }
+                else
+                {
+                    DrawWuPixel(buffer, new Point(x, (int)y), color, 1 - (y - (int)y), brushSize);
+                    DrawWuPixel(buffer, new Point(x, (int)y + 1), color, y - (int)y, brushSize);
+                }
+                y += gradient;
+            }
+        }
+
         public static void DrawRectangle(ByteGraphicsBuffer buffer, Point pointStart, Point pointEnd, Color color, int brushSize)
         {
             int left = Math.Min(pointStart.X, pointEnd.X);
@@ -251,6 +291,12 @@ namespace Graphic_Editor
                 throw new ArgumentException("Размеры буферов не совпадают.");
 
             Array.Copy(src.PixelData, dest.PixelData, src.PixelData.Length);
+        }
+
+        private static void DrawWuPixel(ByteGraphicsBuffer buffer, Point point, Color color, float brightness, int brushSize)
+        {
+            var alphaColor = Color.FromArgb((int)(color.A * brightness), color.R, color.G, color.B);
+            SetPixel(buffer, point, alphaColor, brushSize);
         }
     }
 }
