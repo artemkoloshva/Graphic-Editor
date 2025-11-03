@@ -21,7 +21,12 @@ namespace Graphic_Editor
 
         public void OnMouseDown(ByteGraphicsBuffer buffer, Point point, Color color, int brushSize)
         {
-
+            GraphicsRender.FillPattern
+            (
+                buffer, 
+                point, 
+                new Color[2, 2] { { color, Color.Pink},{ Color.Pink, color } }
+            );
         }
 
         public void OnMouseMove(ByteGraphicsBuffer buffer, Point point, Color color, int brushSize)

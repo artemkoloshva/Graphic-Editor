@@ -16,6 +16,8 @@ namespace Graphic_Editor
         private int _width;
         private int _height;
 
+        public byte[] PixelData { get { return _pixelData; } }
+        public Bitmap PreviewBitmap { get; private set; }
         public int Width { get { return _width; } }
         public int Height { get { return _height; } }
 
@@ -107,5 +109,16 @@ namespace Graphic_Editor
             return bitmap;
         }
 
+        public void RenderPreview(Bitmap preview)
+        {
+            if (PreviewBitmap != null)
+            {
+                PreviewBitmap.Dispose();
+                PreviewBitmap = null;
+            }
+
+            if (preview != null)
+                PreviewBitmap = new Bitmap(preview);
+        }
     }
 }

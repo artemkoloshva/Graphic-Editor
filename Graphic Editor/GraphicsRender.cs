@@ -310,5 +310,13 @@ namespace Graphic_Editor
                 stack.Push(new Point(px, py - 1));
             }
         }
+
+        public static void CopyBuffer(ByteGraphicsBuffer src, ByteGraphicsBuffer dest)
+        {
+            if (src.Width != dest.Width || src.Height != dest.Height)
+                throw new ArgumentException("Размеры буферов не совпадают.");
+
+            Array.Copy(src.PixelData, dest.PixelData, src.PixelData.Length);
+        }
     }
 }

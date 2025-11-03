@@ -10,28 +10,35 @@ namespace Graphic_Editor
 {
     internal class RectangleTool : ITool
     {
-        private DrawingMode _mode;
+        public DrawingMode Mode { get; } = DrawingMode.Rectangle;
 
-        public DrawingMode Mode { get; }
-
-        public RectangleTool()
-        {
-            Mode = DrawingMode.Rectangle;
-        }
+        private Point? _startPoint = null;
 
         public void OnMouseDown(ByteGraphicsBuffer buffer, Point point, Color color, int brushSize)
         {
-
+            _startPoint = point;
         }
 
         public void OnMouseMove(ByteGraphicsBuffer buffer, Point point, Color color, int brushSize)
         {
+            if (!_startPoint.HasValue) return;
 
+            var tempBuffer = new ByteGraphicsBuffer(buffer.Width, buffer.Height);
+            GraphicsRender.CopyBuffer(buffer, tempBuffer);
+
+            GraphicsRender.DrawRectangle(tempBuffer, _startPoint.Value, point, color, brushSize);
+
+            buffer.RenderPreview(tempBuffer.ToBitmap());
         }
 
         public void OnMouseUp(ByteGraphicsBuffer buffer, Point point, Color color, int brushSize)
         {
+            if (!_startPoint.HasValue) return;
 
+            GraphicsRender.DrawRectangle(buffer, _startPoint.Value, point, color, brushSize);
+            buffer.RenderPreview(null);
+            _startPoint = null;
         }
     }
+
 }

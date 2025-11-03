@@ -21,7 +21,7 @@ namespace Graphic_Editor
 
         public void OnMouseDown(ByteGraphicsBuffer buffer, Point point, Color color, int brushSize)
         {
-
+            GraphicsRender.FillScanline(buffer, point, color);
         }
 
         public void OnMouseMove(ByteGraphicsBuffer buffer, Point point, Color color, int brushSize)

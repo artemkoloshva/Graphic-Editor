@@ -11,6 +11,7 @@ namespace Graphic_Editor
     internal class Render
     {
         private ByteGraphicsBuffer _buffer;
+        private ByteGraphicsBuffer _previewBuffer;
         private DateTime _lastRedraw = DateTime.MinValue;
         private ITool[] _tools;
         private ITool _currentTool;
@@ -23,6 +24,7 @@ namespace Graphic_Editor
         public Render(int width, int height)
         {
             _buffer = new ByteGraphicsBuffer(width, height);
+            _previewBuffer = new ByteGraphicsBuffer(width, height);
             _tools = new ITool[9]
             {
                 new PencilTool(),
@@ -87,7 +89,17 @@ namespace Graphic_Editor
 
         public void RequestRedraw()
         {
-            OnRedrawRequested?.Invoke(_buffer.ToBitmap());
+            Bitmap bitmap;
+            if (_buffer.PreviewBitmap != null)
+            {
+                bitmap = new Bitmap(_buffer.PreviewBitmap);
+            }
+            else
+            {
+                bitmap = _buffer.ToBitmap();
+            }
+
+            OnRedrawRequested?.Invoke(bitmap);
         }
     }
 }
