@@ -598,7 +598,6 @@
             this.drawPictureBox.Size = new System.Drawing.Size(970, 837);
             this.drawPictureBox.TabIndex = 1;
             this.drawPictureBox.TabStop = false;
-            this.drawPictureBox.Paint += new System.Windows.Forms.PaintEventHandler(this.DrawPictureBox_Paint);
             this.drawPictureBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.DrawPictureBox_MouseDown);
             this.drawPictureBox.MouseLeave += new System.EventHandler(this.DrawPictureBox_MouseLeave);
             this.drawPictureBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.DrawPictureBox_MouseMove);

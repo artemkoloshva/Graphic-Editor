@@ -9,7 +9,7 @@ using static System.Windows.Forms.AxHost;
 
 namespace Graphic_Editor
 {
-    internal static class Graphics
+    internal static class GraphicsRender
     {
         /// <summary>
         /// Изменяет цвет пикселя на кординатах (x, y)
@@ -20,10 +20,11 @@ namespace Graphic_Editor
         /// <param name="color"></param>
         public static void SetPixel(ByteGraphicsBuffer buffer, Point point, Color color, int brushSize)
         {
-            int minX = Math.Max(0, point.X - brushSize / 2);
-            int maxX = Math.Min(buffer.Width - 1, point.X + brushSize / 2);
-            int minY = Math.Max(0, point.Y - brushSize / 2);
-            int maxY = Math.Min(buffer.Height - 1, point.Y + brushSize / 2);
+            int half = brushSize / 2;
+            int minX = Math.Max(0, point.X - half);
+            int minY = Math.Max(0, point.Y - half);
+            int maxX = Math.Min(buffer.Width - 1, minX + brushSize - 1);
+            int maxY = Math.Min(buffer.Height - 1, minY + brushSize - 1);
 
             for (int x = minX; x <= maxX; x++)
             {
@@ -42,10 +43,11 @@ namespace Graphic_Editor
         /// <param name="y"></param>
         public static void DeletePixel(ByteGraphicsBuffer buffer, Point point, int brushSize)
         {
-            int minX = Math.Max(0, point.X - brushSize / 2);
-            int maxX = Math.Min(buffer.Width - 1, point.X + brushSize / 2);
-            int minY = Math.Max(0, point.Y - brushSize / 2);
-            int maxY = Math.Min(buffer.Height - 1, point.Y + brushSize / 2);
+            int half = brushSize / 2;
+            int minX = Math.Max(0, point.X - half);
+            int minY = Math.Max(0, point.Y - half);
+            int maxX = Math.Min(buffer.Width - 1, minX + brushSize - 1);
+            int maxY = Math.Min(buffer.Height - 1, minY + brushSize - 1);
 
             for (int x = minX; x <= maxX; x++)
             {

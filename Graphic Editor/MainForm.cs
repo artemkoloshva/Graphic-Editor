@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
@@ -41,6 +43,7 @@ namespace Graphic_Editor
         {
             InitializeComponent();
             InitializeDefaultOptions();
+            InitializeRender();
             SetCurrentSizeLabel();
             ResizeDrawPictureBox();
         }
@@ -71,24 +74,26 @@ namespace Graphic_Editor
             }
         }
 
-        private void DrawPictureBox_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
         private void DrawPictureBox_MouseMove(object sender, MouseEventArgs e)
         {
             SetCurrentPositionLabel(e);
-            _render.HandleMouseMove(_drawingMode, new Point(_hoveredCellX, _hoveredCellY), _currentColor, _brushSize);
+
+            if (_hoveredCellX >= 0 && _hoveredCellY >= 0 &&
+                _hoveredCellX < _widthImage && _hoveredCellY < _heightImage)
+            {
+                _render.HandleMouseMove(_drawingMode, new Point(_hoveredCellX, _hoveredCellY), _currentColor, _brushSize);
+            }
         }
 
         private void DrawPictureBox_MouseDown(object sender, MouseEventArgs e)
         {
+            SetCurrentPositionLabel(e);
             _render.HandleMouseDown(_drawingMode, new Point(_hoveredCellX, _hoveredCellY), _currentColor, _brushSize);
         }
 
         private void DrawPictureBox_MouseUp(object sender, MouseEventArgs e)
         {
+            SetCurrentPositionLabel(e);
             _render.HandleMouseUp(_drawingMode, new Point(_hoveredCellX, _hoveredCellY), _currentColor, _brushSize);
         }
 
@@ -119,6 +124,7 @@ namespace Graphic_Editor
                 MessageBox.Show($"Введите корректные числовые значения (0-{MAX_SIZE_IMAGE})");
             }
 
+            InitializeRender();
             ResizeDrawPictureBox();
             SetCurrentSizeLabel();
         }
@@ -208,8 +214,6 @@ namespace Graphic_Editor
             widthTextBox.Text = _widthImage.ToString();
             heightTextBox.Text = _heightImage.ToString();
 
-            _render = new Render(_widthImage, _heightImage);
-
             gridCheckBox.Checked = false;
 
             _currentColor = Color.FromArgb(DEFAULT_COLOR_A, DEFAULT_COLOR_R, DEFAULT_COLOR_G, DEFAULT_COLOR_B);
@@ -231,6 +235,25 @@ namespace Graphic_Editor
             currentPositionLabel.Visible = false;
         }
 
+        private void InitializeRender()
+        {
+            _render = new Render(_widthImage, _heightImage);
+
+            _render.OnRedrawRequested += (bitmap) =>
+            {
+                drawPictureBox.Image?.Dispose();
+
+                var scaledBitmap = ScaleBitmap(bitmap, drawPictureBox.Width, drawPictureBox.Height);
+                drawPictureBox.Image = scaledBitmap;
+
+                bitmap.Dispose();
+
+                drawPictureBox.Invalidate();
+            };
+
+            _render.SetTool(_drawingMode);
+        }
+
         private void ResizeDrawPictureBox()
         {
             float ratioOfTheSidesImage = (float)_heightImage / _widthImage;
@@ -249,6 +272,9 @@ namespace Graphic_Editor
                 texturePictureBox.Location = new Point(0, drawPanel.Height / 2 - texturePictureBox.Height / 2);
             }
 
+            drawPictureBox.Size = texturePictureBox.Size;
+            drawPictureBox.Location = new Point(0, 0);
+
             if (_widthImage > 0 && _heightImage > 0)
             {
                 _cellWidth = (float)drawPictureBox.Width / _widthImage;
@@ -256,7 +282,9 @@ namespace Graphic_Editor
             }
 
             drawPictureBox.Invalidate();
-        } 
+            _render?.RequestRedraw();
+        }
+
 
         private void SetCurrentSizeLabel()
         {
@@ -273,6 +301,7 @@ namespace Graphic_Editor
             {
                 _hoveredCellX = cellX;
                 _hoveredCellY = cellY;
+
                 drawPictureBox.Invalidate();
 
                 if (currentPositionLabel.Visible != true)
@@ -296,6 +325,18 @@ namespace Graphic_Editor
 
                 currentButton = setButton;
             }
+        }
+
+        private Bitmap ScaleBitmap(Bitmap original, int newWidth, int newHeight)
+        {
+            var scaled = new Bitmap(newWidth, newHeight);
+            using (var g = System.Drawing.Graphics.FromImage(scaled))
+            {
+                g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.NearestNeighbor;
+                g.PixelOffsetMode = System.Drawing.Drawing2D.PixelOffsetMode.Half;
+                g.DrawImage(original, 0, 0, newWidth, newHeight);
+            }
+            return scaled;
         }
     }
 }

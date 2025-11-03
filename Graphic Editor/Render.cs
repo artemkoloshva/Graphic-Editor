@@ -11,9 +11,12 @@ namespace Graphic_Editor
     internal class Render
     {
         private ByteGraphicsBuffer _buffer;
+        private DateTime _lastRedraw = DateTime.MinValue;
         private ITool[] _tools;
         private ITool _currentTool;
         private bool _isDrawing;
+
+        public event Action<Bitmap> OnRedrawRequested;
 
         public ByteGraphicsBuffer Buffer { get { return this._buffer; } }
 
@@ -41,6 +44,7 @@ namespace Graphic_Editor
             _isDrawing = true;
             SetTool(mode);
             _currentTool.OnMouseDown(_buffer, point, color, brushSize);
+            RequestRedraw();
         }
 
         public void HandleMouseMove(DrawingMode mode, Point point, Color color, int brushSize)
@@ -49,6 +53,13 @@ namespace Graphic_Editor
             {
                 SetTool(mode);
                 _currentTool.OnMouseMove(_buffer, point, color, brushSize);
+
+                var now = DateTime.Now;
+                if ((now - _lastRedraw).TotalMilliseconds > 16)
+                {
+                    _lastRedraw = now;
+                    RequestRedraw();
+                }
             }
         }
 
@@ -57,9 +68,10 @@ namespace Graphic_Editor
             _isDrawing = false;
             SetTool(mode);
             _currentTool.OnMouseUp(_buffer, point, color, brushSize);
+            RequestRedraw();
         }
 
-        private void SetTool(DrawingMode mode)
+        public void SetTool(DrawingMode mode)
         {
             if (!_currentTool.Mode.Equals(mode))
             {
@@ -71,6 +83,11 @@ namespace Graphic_Editor
                     }
                 }
             }
+        }
+
+        public void RequestRedraw()
+        {
+            OnRedrawRequested?.Invoke(_buffer.ToBitmap());
         }
     }
 }

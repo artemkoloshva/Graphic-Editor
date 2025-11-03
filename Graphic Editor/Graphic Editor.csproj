@@ -54,7 +54,7 @@
     <Compile Include="FillTool.cs" />
     <Compile Include="ITool.cs" />
     <Compile Include="DrawingMode.cs" />
-    <Compile Include="Graphics.cs" />
+    <Compile Include="GraphicsRender.cs" />
     <Compile Include="LineTool.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
