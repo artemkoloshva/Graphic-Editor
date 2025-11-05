@@ -32,7 +32,7 @@ namespace Graphic_Editor
             var tempBuffer = new ByteGraphicsBuffer(buffer.Width, buffer.Height);
             GraphicsRender.CopyBuffer(buffer, tempBuffer);
 
-            GraphicsRender.DrawCircle(tempBuffer, _startPoint.Value, point, color, brushSize);
+            GraphicsRender.DrawCircleBresenham(tempBuffer, _startPoint.Value, point, color, brushSize);
 
             buffer.RenderPreview(tempBuffer.ToBitmap());
         }
@@ -41,7 +41,7 @@ namespace Graphic_Editor
         {
             if (!_startPoint.HasValue) return;
 
-            GraphicsRender.DrawCircle(buffer, _startPoint.Value, point, color, brushSize);
+            GraphicsRender.DrawCircleBresenham(buffer, _startPoint.Value, point, color, brushSize);
             buffer.RenderPreview(null);
             _startPoint = null;
         }

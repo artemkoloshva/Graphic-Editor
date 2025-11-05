@@ -170,7 +170,7 @@ namespace Graphic_Editor
             }
         }
 
-        public static void DrawCircle(ByteGraphicsBuffer buffer, Point pointStart, Point pointEnd, Color color, int brushSize)
+        public static void DrawCircleBresenham(ByteGraphicsBuffer buffer, Point pointStart, Point pointEnd, Color color, int brushSize)
         {
             int centerX = (pointStart.X + pointEnd.X) / 2;
             int centerY = (pointStart.Y + pointEnd.Y) / 2;
@@ -178,78 +178,88 @@ namespace Graphic_Editor
             int height = Math.Abs(pointEnd.Y - pointStart.Y);
             int radius = Math.Min(width, height) / 2;
 
-            int x0 = 0;
-            int y0 = radius;
-            int delta = 2 - 2 * radius;
-            int error = 0;
+            int x = 0;
+            int y = radius;
+            int d = 3 - 2 * radius;
 
-            while (y0 >= 0)
+            while (x <= y)
             {
-                SetPixel(buffer, new Point(centerX + x0, centerY + y0), color, brushSize);
-                SetPixel(buffer, new Point(centerX + x0, centerY - y0), color, brushSize);
-                SetPixel(buffer, new Point(centerX - x0, centerY + y0), color, brushSize);
-                SetPixel(buffer, new Point(centerX - x0, centerY - y0), color, brushSize);
+                SetPixel(buffer, new Point(centerX + x, centerY + y), color, brushSize);
+                SetPixel(buffer, new Point(centerX - x, centerY + y), color, brushSize);
+                SetPixel(buffer, new Point(centerX + x, centerY - y), color, brushSize);
+                SetPixel(buffer, new Point(centerX - x, centerY - y), color, brushSize);
+                SetPixel(buffer, new Point(centerX + y, centerY + x), color, brushSize);
+                SetPixel(buffer, new Point(centerX - y, centerY + x), color, brushSize);
+                SetPixel(buffer, new Point(centerX + y, centerY - x), color, brushSize);
+                SetPixel(buffer, new Point(centerX - y, centerY - x), color, brushSize);
 
-                error = 2 * (delta + y0) - 1;
-
-                if (delta < 0 && error <= 0)
+                if (d <= 0)
                 {
-                    x0++;
-                    delta += 2 * x0 + 1;
-                    continue;
+                    d = d + 4 * x + 6;
                 }
-
-                error = 2 * (delta - x0) - 1;
-
-                if (delta > 0 && error > 0)
+                else
                 {
-                    y0--;
-                    delta += 1 - 2 * y0;
-                    continue;
+                    d = d + 4 * (x - y) + 10;
+                    y--;
                 }
-
-                x0++;
-                delta += 2 * (x0 - y0);
-                y0--;
+                x++;
             }
         }
 
         public static void FillScanline(ByteGraphicsBuffer buffer, Point point, Color fillColor)
         {
             Color targetColor = buffer.GetPixel(point.X, point.Y);
-            if (targetColor.ToArgb() == fillColor.ToArgb()) return;
+
+            if (targetColor.ToArgb() == fillColor.ToArgb())
+                return;
 
             var stack = new Stack<Point>();
             stack.Push(point);
 
             while (stack.Count > 0)
             {
-                Point pointStack = stack.Pop();
-                int py = pointStack.Y;
-                int px = pointStack.X;
+                Point current = stack.Pop();
+                int x = current.X;
+                int y = current.Y;
 
-                int left = px;
-                while (left >= 0 && buffer.GetPixel(left, py).ToArgb() == targetColor.ToArgb())
+                if (x < 0 || x >= buffer.Width || y < 0 || y >= buffer.Height)
+                    continue;
+
+                if (buffer.GetPixel(x, y).ToArgb() != targetColor.ToArgb())
+                    continue;
+
+                int left = x;
+                while (left > 0 && buffer.GetPixel(left - 1, y).ToArgb() == targetColor.ToArgb())
                     left--;
-                left++;
 
-                int right = px;
-                while (right < buffer.Width && buffer.GetPixel(right, py).ToArgb() == targetColor.ToArgb())
+                int right = x;
+                while (right < buffer.Width - 1 && buffer.GetPixel(right + 1, y).ToArgb() == targetColor.ToArgb())
                     right++;
 
-                for (int i = left; i < right; i++)
-                    buffer.SetPixel(i, py, fillColor);
+                for (int i = left; i <= right; i++)
+                    buffer.SetPixel(i, y, fillColor);
 
-                for (int row = py - 1; row <= py + 1; row += 2)
+                for (int row = y - 1; row <= y + 1; row += 2)
                 {
-                    if (row < 0 || row >= buffer.Height) continue;
+                    if (row < 0 || row >= buffer.Height)
+                        continue;
 
-                    for (int i = left; i < right; i++)
+                    int scanLeft = left;
+                    while (scanLeft <= right)
                     {
-                        if (buffer.GetPixel(i, row).ToArgb() == targetColor.ToArgb())
+                        while (scanLeft <= right && buffer.GetPixel(scanLeft, row).ToArgb() != targetColor.ToArgb())
+                            scanLeft++;
+
+                        if (scanLeft > right) break;
+
+                        int segmentRight = scanLeft;
+                        while (segmentRight <= right && buffer.GetPixel(segmentRight, row).ToArgb() == targetColor.ToArgb())
+                            segmentRight++;
+
+                        if (segmentRight > scanLeft)
                         {
-                            stack.Push(new Point(i, row));
-                            break;
+                            stack.Push(new Point(scanLeft, row));
+                            scanLeft = segmentRight;
                         }
                     }
                 }
